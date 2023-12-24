@@ -1,0 +1,71 @@
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" Source.XSD /classes /fields /nologo /namespace:MyApp.MyNamespace Dependence1.XSD Dependence2.XSD 
+
+--------------------------------------------------------------------------------------------------
+
+- Examine the *.xsd and note any import or include element with a schemaLocation attribute
+- Pass the files denoted by all imported or included schemaLocation(s) to the command line
+
+--------------------------------------------------------------------------------------------------
+Flags
+
+/classes				Generate classes (Can generate Dataset too)
+/fields					Generates fields only. By default, properties with backing fields are generated.
+/nologo					Suppress the banner
+/n[amespace]:namespace 	Specifies the runtime namespace for the generated types. The default namespace is Schemas.
+--------------------------------------------------------------------------------------------------
+SEE: https://learn.microsoft.com/en-us/dotnet/standard/serialization/xml-schema-definition-tool-xsd-exe
+--------------------------------------------------------------------------------------------------
+
+cd C:\_Disk_X\_Dev\CSharp\AntyxSoft.AxMyData\Docs\XSD 1.8
+
+--------------------------------------------------------------------------------------------------
+XSD.EXE command lines for MyData XSD files 
+
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" paymentMethods-v1.0.8.xsd /classes /fields /nologo /namespace:AxMyData.AADE InvoicesDoc-v1.0.8.xsd incomeClassification-v1.0.8.xsd expensesClassification-v1.0.8.xsd
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" response-v1.0.8.xsd /classes /fields /nologo /namespace:AxMyData.AADE
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" incomeClassification-v1.0.8.xsd /classes /fields /nologo /namespace:AxMyData.AADE
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" expensesClassification-v1.0.8.xsd /classes /fields /nologo /namespace:AxMyData.AADE
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" RequestedProviderDoc-v1.0.8.xsd /classes /fields /nologo /namespace:AxMyData.AADE
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" InvoicesDoc-v1.0.8.xsd /classes /fields /nologo /namespace:AxMyData.AADE incomeClassification-v1.0.8.xsd expensesClassification-v1.0.8.xsd
+"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\xsd.exe" requestedInvoicesDoc-v1.0.8.xsd /classes /fields /nologo /namespace:AxMyData.AADE   incomeClassification-v1.0.8.xsd expensesClassification-v1.0.8.xsd paymentMethods-v1.0.8.xsd InvoicesDoc-v1.0.8.xsd
+
+--------------------------------------------------------------------------------------------------
+
+xsd2code command lines for MyData XSD files 
+
+FROM: https://github.com/Kusnaditjung/CodeGenerator
+
+/ns		Namespace
+/gsf	Generate Separate Files
+/ap+	Auto Properties
+/eit+	Exclude types from included Schemas in generation
+/xa+	Generate xml attributes
+/co 0	Numeric. Code Options. Various options to use when generating .NET types (see .net CodeGenerationOptions Enum)
+
+
+C:\tools\xsd2code\xsd2code paymentMethods-v1.0.8.xsd /ns MyDataXsd /gsf /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code response-v1.0.8.xsd /ns MyDataXsd /gsf /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code incomeClassification-v1.0.8.xsd /ns MyDataXsd /gsf /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code expensesClassification-v1.0.8.xsd /ns MyDataXsd /gsf /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code InvoicesDoc-v1.0.8.xsd /ns MyDataXsd /gsf /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code requestedInvoicesDoc-v1.0.8.xsd /ns MyDataXsd /gsf /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code RequestedProviderDoc-v1.0.8.xsd /ns MyDataXsd /gsf /ap+ /eit+ /xa+ /co 0
+--------------------------------------------------------------------------------------------------
+
+REM batch file for generating files with multiples classes
+REM we need this in case some class is not generated when generating a file for each class
+
+cd C:\tools\xsd2code\MyData_1.8
+
+C:\tools\xsd2code\xsd2code paymentMethods-v1.0.8.xsd /ns MyDataXsd /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code response-v1.0.8.xsd /ns MyDataXsd /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code incomeClassification-v1.0.8.xsd /ns MyDataXsd /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code expensesClassification-v1.0.8.xsd /ns MyDataXsd /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code InvoicesDoc-v1.0.8.xsd /ns MyDataXsd /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code requestedInvoicesDoc-v1.0.8.xsd /ns MyDataXsd /ap+ /eit+ /xa+ /co 0
+C:\tools\xsd2code\xsd2code RequestedProviderDoc-v1.0.8.xsd /ns MyDataXsd /ap+ /eit+ /xa+ /co 0
+
+
+
+ 
+ 
