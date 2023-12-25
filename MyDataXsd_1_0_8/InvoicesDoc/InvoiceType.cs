@@ -30,207 +30,137 @@ namespace MyDataXsd {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="http://www.aade.gr/myDATA/invoice/v1.0", IsNullable=false)]
     public enum InvoiceType {
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("1.1")]
-        Item11,
         
-        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("1.1")]
+        Item11,       
         [System.Xml.Serialization.XmlEnumAttribute("1.2")]
         Item12,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("1.3")]
         Item13,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("1.4")]
         Item14,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("1.5")]
         Item15,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("1.6")]
         Item16,
         
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlEnumAttribute("2.1")]
         Item21,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("2.2")]
         Item22,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("2.3")]
         Item23,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("2.4")]
         Item24,
-        
-        /// <remarks/>
+
+
         [System.Xml.Serialization.XmlEnumAttribute("3.1")]
         Item31,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("3.2")]
         Item32,
-        
-        /// <remarks/>
+
+
         [System.Xml.Serialization.XmlEnumAttribute("4")]
         Item4,
-        
-        /// <remarks/>
+
+
         [System.Xml.Serialization.XmlEnumAttribute("5.1")]
         Item51,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("5.2")]
         Item52,
-        
-        /// <remarks/>
+
+
         [System.Xml.Serialization.XmlEnumAttribute("6.1")]
         Item61,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("6.2")]
         Item62,
-        
-        /// <remarks/>
+
+
         [System.Xml.Serialization.XmlEnumAttribute("7.1")]
         Item71,
-        
-        /// <remarks/>
+
+
         [System.Xml.Serialization.XmlEnumAttribute("8.1")]
         Item81,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("8.2")]
         Item82,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("8.4")]
         Item84,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("8.5")]
         Item85,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("8.6")]
-        Item86,
+        Item86,        
         
-        /// <remarks/>
+
         [System.Xml.Serialization.XmlEnumAttribute("9.3")]
-        Item93,
+        Item93,        
         
-        /// <remarks/>
+
         [System.Xml.Serialization.XmlEnumAttribute("11.1")]
         Item111,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("11.2")]
         Item112,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("11.3")]
         Item113,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("11.4")]
         Item114,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("11.5")]
         Item115,
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("12")]
-        Item121,
         
-        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("12")]
+        Item121,     
+
+
         [System.Xml.Serialization.XmlEnumAttribute("13.1")]
         Item131,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("13.2")]
         Item132,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("13.3")]
         Item133,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("13.4")]
         Item134,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("13.30")]
         Item1330,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("13.31")]
         Item1331,
         
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlEnumAttribute("14.1")]
         Item141,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("14.2")]
         Item142,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("14.3")]
         Item143,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("14.4")]
         Item144,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("14.5")]
         Item145,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("14.30")]
         Item1430,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("14.31")]
         Item1431,
         
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlEnumAttribute("15.1")]
         Item151,
         
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlEnumAttribute("16.1")]
         Item161,
         
-        /// <remarks/>
+        
         [System.Xml.Serialization.XmlEnumAttribute("17.1")]
         Item171,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("17.2")]
         Item172,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("17.3")]
         Item173,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("17.4")]
         Item174,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("17.5")]
         Item175,
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlEnumAttribute("17.6")]
         Item176,
     }
