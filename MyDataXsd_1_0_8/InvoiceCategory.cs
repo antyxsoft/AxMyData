@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
 
     /// <summary>
     /// Παράρτημα: Είδη παραστατικών
+    /// <para>FOR: <see cref="InvoiceHeaderType.invoiceType"/> property </para>
     /// <para>XSD Type: InvoiceType </para>
     /// <para>NOTE: helper for AADE <see cref="InvoiceType"/> enum </para>
     /// </summary>

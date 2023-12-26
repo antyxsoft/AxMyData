@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
-
-
     /// Παράρτημα: Κωδικός Κατηγορίας Χαρακτηρισμού Εξόδων
+    /// <para>FOR: <see cref="ExpensesClassificationType.classificationCategory"/> property </para>
     /// <para>XSD Type: ExpensesClassificationCategoryType </para>
     /// <para>NOTE: helper for AADE <see cref="ExpensesClassificationCategoryType"/> enum </para>
     /// </summary>

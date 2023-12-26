@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
     /// <summary>
     /// Παράρτημα: Κατηγορία Συντελεστή Χαρτοσήμου
+    /// <para>FOR: <see cref="InvoiceRowType.stampDutyPercentCategory"/> property </para>
     /// <para>XSD Type: StampDutyType</para>
     /// </summary>
     public class StampDutyCategory

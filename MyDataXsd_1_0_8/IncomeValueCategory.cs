@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
 
     /// <summary>
     /// Παράρτημα: Κωδικός Τύπου Χαρακτηρισμού Εσόδων
+    /// <para>FOR: <see cref="IncomeClassificationType.classificationType"/></para>
     /// <para>XSD Type: IncomeClassificationValueType </para>
     /// <para>NOTE: helper for AADE <see cref="IncomeClassificationValueType"/> enum </para>
     /// </summary>

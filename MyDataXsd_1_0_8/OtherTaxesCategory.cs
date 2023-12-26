@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
     /// <summary>
     /// Παράρτημα: Κατηγορία Λοιπών Φόρων
+    /// <para>FOR: <see cref="InvoiceRowType.otherTaxesPercentCategory"/> property </para>
     /// <para>XSD Type: OtherTaxesType</para>
     /// </summary>
     public class OtherTaxesCategory

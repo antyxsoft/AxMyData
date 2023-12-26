@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
     /// <summary>
     /// Παράρτημα: Κατηγορία Αιτίας Εξαίρεσης ΦΠΑ
+    /// <para>FOR: <see cref="ExpensesClassificationType.vatExemptionCategory"/> property </para>
+    /// <para>FOR: <see cref="InvoiceRowType.vatExemptionCategory"/> property </para>
     /// <para>XSD Type: VatExemptionType</para>
     /// </summary>
     public class VatExemptionCategory

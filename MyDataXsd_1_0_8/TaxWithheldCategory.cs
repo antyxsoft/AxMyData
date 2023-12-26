@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
     /// <summary>
     /// Παράρτημα: Κατηγορία Παρακρατούμενων Φόρων
+    /// <para>FOR: <see cref="InvoiceRowType.withheldPercentCategory"/> property </para>
     /// <para>XSD Type: WithheldType</para>
     /// </summary>
     public class TaxWithheldCategory

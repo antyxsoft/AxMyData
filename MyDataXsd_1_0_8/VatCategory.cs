@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyDataXsd
+﻿namespace MyDataXsd
 {
 
     /// <summary>
     /// Παράρτημα: Κατηγορία ΦΠΑ
+    /// <para>FOR: <see cref="ExpensesClassificationType.vatCategory"/> </para>
+    /// <para>FOR: <see cref="InvoiceRowType.vatCategory"/> </para>
     /// <para>XSD Type: VatType</para>
     /// </summary>
     public class VatCategory
