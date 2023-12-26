@@ -13,7 +13,7 @@ namespace MyData.RestApi
     /// <summary>
     /// Represents the response of a call to the Api
     /// </summary>
-    public class ApiCall : EventArgs
+    internal class ApiCall : EventArgs
     {
  
         /* construction */
@@ -38,7 +38,7 @@ namespace MyData.RestApi
             this.ReasonPhrase = Response.ReasonPhrase;
             this.IsSuccess = Response.IsSuccessStatusCode;
 
-            if (Response.IsSuccessStatusCode)
+            if (this.IsSuccess)
             {
                 ResponseText = await Response.Content.ReadAsStringAsync();
             }
@@ -75,8 +75,8 @@ namespace MyData.RestApi
 
         /* response properties */
         /// <summary>
-            /// True when the call succeeds network-wise.
-            /// </summary>
+        /// True when the call succeeds network-wise.
+        /// </summary>
         public bool IsSuccess { get; set; }
         /// <summary>
         /// The HTTP status code of the call
@@ -84,18 +84,17 @@ namespace MyData.RestApi
         public HttpStatusCode StatusCode { get; set; }
         /// <summary>
         /// The Response object.
-        /// It is null before the OnCallAfter()
+        /// CAUTION: It is null before the OnAfter() event and it is disposed right after the OnAfter() event.
+        /// <para>It lives just inside the OnAfter() event.</para>
         /// </summary>
         public HttpResponseMessage Response { get; set; }
         /// <summary>
-        /// The reason text sent by the server
+        /// The reason text sent by the server together with the status code
         /// </summary>
         public string ReasonPhrase { get; set; }
         /// <summary>
-        /// The Packet result of a controller action.
+        /// The XML or JSON text returned by the api call.
         /// </summary>
         public string ResponseText { get; set; }
- 
-
     }
 }

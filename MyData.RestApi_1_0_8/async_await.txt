@@ -1,0 +1,46 @@
+﻿In a UI app (WinForms or ASP.NET) code, await should be always used.
+SEE: https://devblogs.microsoft.com/pfxteam/await-and-ui-and-deadlocks-oh-my/
+
+General guidance: in UI code (WinForms or ASP.NET), do not use ConfigureAwait(false). 
+
+Instead of writing:
+
+    Task<string> s = ExecuteAsync();
+    textBox1.Text = s.Result;   // BAD ON UI
+
+you can write:
+
+    Task<string> s = ExecuteAsync();
+    textBox1.Text = await s;    // GOOD ON UI
+
+Or instead of writing:
+
+    Task t = DoWork();
+    t.Wait();                   // BAD ON UI
+
+you can write:
+
+    Task t = DoWork();
+    await t;                    // GOOD ON UI
+
+-----------------------------------------------------------------------
+In a library code, always use ConfigureAwait(false) along with the await call.
+SEE: https://medium.com/bynder-tech/c-why-you-should-use-configureawait-false-in-your-library-code-d7837dce3d7f
+
+General guidance: in library code, always use ConfigureAwait(false).
+General quidance: every await call in a library MUST use ConfigureAwait(false)
+
+public async Task<string> ExecuteAsync()
+{
+    using (var httpClient = new HttpClient())
+    using (var httpResponse = await httpClient.GetAsync(SomeUrlHere).ConfigureAwait(false))
+    {
+        return await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+    }
+}
+
+public async Task<string> GetHtmlAsync()
+{
+    string Result = await ExecuteAsync().ConfigureAwait(false);
+    return Result;
+}

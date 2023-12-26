@@ -9,7 +9,7 @@ namespace MyData.RestApi
     /// <summary>
     /// The type of a HttpClient call
     /// </summary>
-    public enum ApiClientCallType
+    internal enum ApiClientCallType
     {
         /// <summary>
         /// Get

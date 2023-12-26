@@ -11,7 +11,7 @@ namespace MyData.RestApi
     /// <summary>
     /// XML helper
     /// </summary>
-    static public class ApiXml
+    static internal class ApiXml
     {
         /// <summary>
         /// Serializes a specified instance and returns the XML string.

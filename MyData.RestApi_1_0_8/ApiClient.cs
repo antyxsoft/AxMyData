@@ -18,7 +18,7 @@ namespace MyData.RestApi
     /// </list>
     /// </para>
     /// </summary>
-    public class ApiClient
+    internal class ApiClient
     {
         /* private */
         HttpClient Client = new HttpClient();
@@ -59,19 +59,26 @@ namespace MyData.RestApi
                 if (OnBefore != null)
                     OnBefore(this, Info);
 
-                string XmlText = ApiXml.Serialize(Packet);   
-                StringContent Content = new StringContent(XmlText, Encoding.UTF8, MediaTypeNames.Application.Xml);
+                string XmlText = string.Empty;
+                StringContent Content = null;
 
-                // CAUTION: In WinForms the await may deadlock threads. Use ConfigureAwait() to avoid it.
-                // SEE: https://stackoverflow.com/a/10369275/1779320
-                // SEE ALSO: https://blog.stephencleary.com/2012/02/async-and-await.html
-                HttpResponseMessage Response = await Client.PostAsync(ActionUrl, Content).ConfigureAwait(false);
-                await Info.LoadFromResponseAsync(Response).ConfigureAwait(false);
+                // AMAZING: They have POST call without body content
+                if (Packet != null)
+                {
+                    XmlText = ApiXml.Serialize(Packet);
+                    Content = new StringContent(XmlText, Encoding.UTF8, MediaTypeNames.Application.Xml);
+                }
 
-                Info.IsSuccess = true;
+                // SEE: async_await.txt for the ConfigureAwait(false)
+                using (HttpResponseMessage Response = await Client.PostAsync(ActionUrl, Content).ConfigureAwait(false))
+                {
+                    await Info.LoadFromResponseAsync(Response).ConfigureAwait(false);
 
-                if (OnAfter != null)
-                    OnAfter(this, Info);
+                    Info.IsSuccess = true;
+
+                    if (OnAfter != null)
+                        OnAfter(this, Info);
+                }
             }
             catch (Exception Ex)
             {
@@ -94,18 +101,19 @@ namespace MyData.RestApi
             {
                 PrepareHeaders(UserName, UserKey);
                 if (OnBefore != null)
-                    OnBefore(this, Info); 
+                    OnBefore(this, Info);
 
-                // CAUTION: In WinForms the await may deadlock threads. Use ConfigureAwait() to avoid it.
-                // SEE: https://stackoverflow.com/a/10369275/1779320
-                // SEE ALSO: https://blog.stephencleary.com/2012/02/async-and-await.html
-                HttpResponseMessage Response = await Client.GetAsync(ActionUrl).ConfigureAwait(false);
-                await Info.LoadFromResponseAsync(Response).ConfigureAwait(false);
+                // SEE: async_await.txt for the ConfigureAwait(false)
+                using (HttpResponseMessage Response = await Client.GetAsync(ActionUrl).ConfigureAwait(false))
+                {
+                    await Info.LoadFromResponseAsync(Response).ConfigureAwait(false);
 
-                Info.IsSuccess = true;
+                    Info.IsSuccess = true;
 
-                if (OnAfter != null)
-                    OnAfter(this, Info);
+                    if (OnAfter != null)
+                        OnAfter(this, Info);
+                }
+
             }
             catch (Exception Ex)
             {
