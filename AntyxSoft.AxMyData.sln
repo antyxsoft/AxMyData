@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxMyData", "AxMyData\AxMyDa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxMyData.Lib", "AxMyData.Lib\AxMyData.Lib.csproj", "{EE39E7FF-30C6-4045-905B-6C8036A3077F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDataXsd_1_0_8", "MyDataXsd_1_0_8\MyDataXsd_1_0_8.csproj", "{3A6DE99A-D298-49AF-ACA1-4E0FA6644D29}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XSD_EXE 1.0.8", "XSD_EXE 1.0.8", "{3CC31A52-BD6A-4058-A16E-7A8AD4E0A395}"
 	ProjectSection(SolutionItems) = preProject
 		Docs\XSD_EXE 1.0.8\expensesClassification-v1_0_8.cs = Docs\XSD_EXE 1.0.8\expensesClassification-v1_0_8.cs
@@ -29,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XSD_EXE 1.0.8", "XSD_EXE 1.
 		Docs\XSD_EXE 1.0.8\RequestedProviderDoc-v1_0_8.cs = Docs\XSD_EXE 1.0.8\RequestedProviderDoc-v1_0_8.cs
 		Docs\XSD_EXE 1.0.8\response-v1_0_8.cs = Docs\XSD_EXE 1.0.8\response-v1_0_8.cs
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyData.Xsd_1_0_8", "MyData.Xsd_1_0_8\MyData.Xsd_1_0_8.csproj", "{95548E5B-765D-4763-8AF3-733A6504899D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyData.RestApi_1_0_8", "MyData.RestApi_1_0_8\MyData.RestApi_1_0_8.csproj", "{C83571C0-7DEA-4F83-A18C-D7E229A3DB97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +50,14 @@ Global
 		{EE39E7FF-30C6-4045-905B-6C8036A3077F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE39E7FF-30C6-4045-905B-6C8036A3077F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE39E7FF-30C6-4045-905B-6C8036A3077F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A6DE99A-D298-49AF-ACA1-4E0FA6644D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A6DE99A-D298-49AF-ACA1-4E0FA6644D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A6DE99A-D298-49AF-ACA1-4E0FA6644D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A6DE99A-D298-49AF-ACA1-4E0FA6644D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95548E5B-765D-4763-8AF3-733A6504899D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95548E5B-765D-4763-8AF3-733A6504899D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95548E5B-765D-4763-8AF3-733A6504899D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95548E5B-765D-4763-8AF3-733A6504899D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C83571C0-7DEA-4F83-A18C-D7E229A3DB97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C83571C0-7DEA-4F83-A18C-D7E229A3DB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C83571C0-7DEA-4F83-A18C-D7E229A3DB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C83571C0-7DEA-4F83-A18C-D7E229A3DB97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

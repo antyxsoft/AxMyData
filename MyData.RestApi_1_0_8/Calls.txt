@@ -1,0 +1,24 @@
+﻿-----------------------------------------------------------------
+Urls
+-----------------------------------------------------------------
+PROD:   https://mydatapi.aade.gr/myDATA/
+DEV:    https://mydataapidev.aade.gr
+-----------------------------------------------------------------
+HTTP METHOD
+-----------------------------------------------------------------
+POST    /SendInvoices
+POST    /SendIncomeClassification
+POST    /SendExpensesClassification
+POST    /SendPaymentsMethod
+POST    /CancelInvoice?mark={mark}[&entityVatNumber]
+GET     /RequestDocs?mark={mark}[&dateFrom][&dateTo][&entityVatNumber][&counterVatNumber][&invType][&maxMark][&nextPartitionKey][&nextRowKey]
+GET     /RequestTransmittedDocs?mark={mark}[&dateFrom][&dateTo][&entityVatNumber][&counterVatNumber][&invType][&maxMark][&nextPartitionKey][&nextRowKey]
+GET     /RequestMyIncome?[dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
+GET     /RequestMyExpenses?[dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
+-----------------------------------------------------------------    
+Return Type
+-----------------------------------------------------------------
+ResponseDoc         SendInvoices, SendIncomeClassification, SendExpensesClassification, CancelInvoice
+RequestedDoc        RequestDocs, RequestTransmittedDocs
+RequestedBookInfo   RequestMyIncome, RequestMyExpenses
+?                   SendPaymentsMethod
