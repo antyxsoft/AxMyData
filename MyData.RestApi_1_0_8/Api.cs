@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace MyData.RestApi
 {
@@ -9,7 +10,7 @@ namespace MyData.RestApi
     /// </summary>
     static public class Api
     {
-
+ 
         static ApiClient Client;
 
         static void Throw(string Message)
@@ -33,7 +34,32 @@ namespace MyData.RestApi
                 Throw("AADE Api Client is not initialized. Call Api.Initialize() first");
             }
         }
-        
+        static void AddQueryParam(StringBuilder SB, string Param, object Value)
+        {
+            if (!string.IsNullOrWhiteSpace(Param) && Value != null)
+            {
+                Type T = Value.GetType();
+
+                string sValue = "";
+                if (T == typeof(string) || T == typeof(int))
+                {
+                    sValue = Value.ToString();
+                }
+                else if (Value.GetType() == typeof(DateTime))
+                {
+                    sValue += ((DateTime)Value).ToString("dd/MM/yyyy");
+                }
+
+                if (!string.IsNullOrWhiteSpace(sValue))
+                {
+                    if (SB.Length > 0)
+                        SB.Append("&");
+                    SB.Append($"{Param}={sValue}");
+                }
+            }
+        }
+
+
         static void Client_OnAfter(object sender, ApiCall e)
         {
         }
@@ -183,13 +209,19 @@ namespace MyData.RestApi
 
         /// <summary>
         /// Cancels a previously sent invoice specified by its mark.
+        /// <para>Αυτή η POST μέθοδος χρησιμοποιείται για την ακύρωση παραστατικού χωρίς επαναϋποβολή καινούργιου. </para>
+        /// <para>Ο χρήστης την καλεί υποβάλλοντας ως παράμετρο το mark του παραστατικού το οποίο θέλει να ακυρώσει. </para>
+        /// <para>Για την περίπτωση εκείνη και μόνο που η μέθοδος κληθεί από τρίτο πρόσωπο (όπως εκπρόσωπος Ν.Π. ή λογιστής), 
+        /// ο ΑΦΜ της οντότητας που εξέδωσε το προς ακύρωση παραστατικό αποστέλλεται μέσω της παραμέτρου entityVatNumber, 
+        /// διαφορετικά η εν λόγω παράμετρος δεν χρειάζεται να αποσταλλεί. </para>
+        /// <para>Δεν απαιτείται αποστολή xml body.</para>
         /// </summary>
         static public async Task<ResponseDoc> CancelInvoice(string UserName, string UserKey, string Mark, string EntityVatNumber = null)
         {
             CheckIsInitialized();
 
             if (string.IsNullOrWhiteSpace(Mark))
-                Throw("Can not cancel an invoice. No Mark is specified");
+                Throw("CancelInvoice: Cannot cancel an invoice. No Mark is specified");
 
             string ActionUrl = !string.IsNullOrWhiteSpace(EntityVatNumber) ? 
                                 $"CancelInvoice?mark={Mark}&entityVatNumber={EntityVatNumber}" : 
@@ -204,13 +236,98 @@ namespace MyData.RestApi
             return Result;
         }
 
-        // RequestDocs?mark={mark}[&dateFrom][&dateTo][&entityVatNumber][&counterVatNumber][&invType][&maxMark][&nextPartitionKey][&nextRowKey]
 
-        static public async Task<RequestedDoc> RequestDocList(string UserName, string UserKey)
+        /// <summary>
+        /// Get invoices sent by other entities, concerning this entity or get invoices sent by this entity, concerning other entities. 
+        /// </summary>
+        /// <param name="UserName">AADE User Id</param>
+        /// <param name="UserKey">AADE Subscription Key</param>
+        /// <param name="EntityDocs">When true requests documents send by this entiry, when false requests documents send by other entities</param>
+        /// <param name="StartMark">Required. The AADE Mark. Returned documents have Mark greater than this parameter.</param>
+        /// <param name="EndMark">Optional. Maximum Mark of documents to return.</param>
+        /// <param name="InvoiceCategory">Optional. Invoice Category of documents to return</param>
+        /// <param name="ReceiverVatNumber">Optional. VAT number of the other entity.</param>
+        /// <param name="EntityVatNumber">Optional. VAT number of the sender entity. Required when the sender is a third party, e.g. an accountant.</param>
+        /// <param name="DateFrom">Optional. Return documents having Date greater or equal to this parameter.</param>
+        /// <param name="DateTo">Optional. Return documents having Date lesser or equal to this parameter.</param>
+        /// <param name="NextPartitionKey">Optional. Used in getting paged results. Empty in the first call. Comes from the returned value of this call, <see cref="RequestedDoc.continuationToken"/></param>
+        /// <param name="NextRowKey">Optional. Used in getting paged results. Empty in the first call. Comes from the returned value of this call, <see cref="RequestedDoc.continuationToken"/> </param>
+        /// <returns></returns>
+        static public async Task<RequestedDoc> RequestDocList(string UserName, string UserKey, 
+                                                              bool EntityDocs,
+                                                              string StartMark,
+                                                              string EndMark = null,
+                                                              InvoiceCategory InvoiceCategory = null,
+                                                              string ReceiverVatNumber = null,
+                                                              string EntityVatNumber = null,
+                                                              DateTime? DateFrom = null,
+                                                              DateTime? DateTo = null,
+                                                              string NextPartitionKey = null,
+                                                              string NextRowKey = null)
+        /*
+        // RequestDocs?             mark={mark}[&dateFrom][&dateTo][&entityVatNumber][&counterVatNumber][&invType][&maxMark][&nextPartitionKey][&nextRowKey]
+        // RequestTransmittedDocs?  mark={mark}[&dateFrom][&dateTo][&entityVatNumber][&counterVatNumber][&invType][&maxMark][&nextPartitionKey][&nextRowKey]
+
+        Parameter               Required    Description
+        -------------------------------------------------------------------
+        mark                    Ναι         Μοναδικός αριθμός καταχώρησης
+        entityVatNumber         Όχι         ΑΦΜ οντότητας
+        dateFrom                Όχι         Αρχή χρονικού διαστήματος αναζήτησης για την ημερομηνία έκδοσης
+        dateTo                  Όχι         Τέλος χρονικού διαστήματος αναζήτησης για την ημερομηνία έκδοσης
+        receiverVatNumber       Όχι         ΑΦΜ αντισυμβαλλόμενου   
+        invType                 Όχι         Τύπος παραστατικού
+        maxMark                 Όχι         Μέγιστος Αριθμός ΜΑΡΚ
+        nextPartitionKey        Όχι         Παράμετρος για την τμηματική λήψη των αποτελεσμάτων
+        nextRowKey              Όχι         Παράμετρος για την τμηματική λήψη των αποτελεσμάτων 
+
+        1) Στην περίπτωση που τα αποτελέσματα αναζήτησης ξεπερνούν σε μέγεθος το μέγιστο επιτρεπτό όριο ο χρήστης θα τα λάβει τμηματικά. 
+           Τα πεδία nextPartitionKey και nextRowKey θα εμπεριέχονται σε κάθε τμήμα των αποτελεσμάτων 
+           και θα χρησιμοποιούνται ως παράμετροι στην κλήση για την λήψη του επόμενου τμήματος αποτελεσμάτων
+        2) Σε περίπτωση που κάποια εκ των παραπάνω παραμέτρων δεν έχει τιμή, η αναζήτηση πραγματοποιείται 
+           για όλες τις πιθανές τιμές αυτού του πεδίου, όπως προηγουμένως
+        3) Σε περίπτωση που μόνο μια εκ των dateFrom, dateTo παραληφθεί, η αναζήτηση θα εκτελεστεί 
+           μόνο για την ημερομηνία που έχει δοθεί στην άλλη παράμετρο. 
+           Αν και οι παράμετροι έχουν τιμή, η αναζήτηση θα εκτελεστεί για το διάστημα από dateFrom έως dateTo.
+        4) Εφόσον αποδοθεί τιμή στην παράμετρο maxMark, θα επιστραφούν όσες εγγραφές έχουν ΜΑΡΚ μικρότερο ή ίσο αυτή της τιμής
+        5) Οι τιμές των παραμέτρων receiverVatNumber και invType εφαρμόζονται πάντα με τον συντελεστή ισότητας (equal operator)
+        6) Στην παράμετρο invType δίνεται ως τιμή ο αριθμός που αντιστοιχεί στον συγκεκριμένο τύπο σύμφωνα με τον πίνακα 8.1 του Παραρτήματος
+         */
         {
-            RequestedDoc Result = null;
+
+            CheckIsInitialized();
+
+            if (string.IsNullOrWhiteSpace(StartMark))
+                Throw("RequestDocList: Cannot Request Docs. No StartMark is specified");
+
+            StringBuilder SB = new StringBuilder();
+            SB.Append($"?mark={StartMark}");
+            AddQueryParam(SB, "maxMark",            EndMark);
+            AddQueryParam(SB, "invType", InvoiceCategory == null ? null : InvoiceCategory.Value);
+            AddQueryParam(SB, "entityVatNumber",    EntityVatNumber);
+            AddQueryParam(SB, "receiverVatNumber", ReceiverVatNumber);
+            AddQueryParam(SB, "dateFrom",           DateFrom);
+            AddQueryParam(SB, "dateTo",             DateTo);
+            AddQueryParam(SB, "nextPartitionKey",   NextPartitionKey);
+            AddQueryParam(SB, "nextRowKey",         NextRowKey);
+
+            string ActionUrl = EntityDocs ? "RequestTransmittedDocs" : "RequestDocs"; 
+            ActionUrl += SB.ToString();
+
+            ApiCall CI = await Client.GetAsync(UserName, UserKey, ActionUrl).ConfigureAwait(false);
+
+            if (!CI.IsSuccess)
+                Throw(CI.ReasonPhrase);
+
+            RequestedDoc Result = ApiXml.Deserialize<RequestedDoc>(CI.ResponseText);
             return Result;
         }
+
+
+        // RequestedBookInfo   RequestMyIncome, RequestMyExpenses
+
+        // https://mydatapi.aade.gr/myDATA/RequestMyIncome? [dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
+        //https://mydataapidev.aade.gr/ RequestMyExpenses?  [dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
+
 
         /* private */
         /// <summary>
