@@ -5,7 +5,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyData.RestApi
+namespace MyData.ApiLib
 {
 
     /// <summary>

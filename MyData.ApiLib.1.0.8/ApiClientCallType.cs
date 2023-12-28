@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyData.RestApi
+namespace MyData.ApiLib
 {
     /// <summary>
     /// The type of a HttpClient call

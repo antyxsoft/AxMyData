@@ -2,13 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>MyData.ApiLib</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <!-- <Nullable>enable</Nullable> -->
-    <RootNamespace>MyData.RestApi</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MyData.Xsd_1_0_8\MyData.Xsd_1_0_8.csproj" />
-  </ItemGroup>
 
 </Project>

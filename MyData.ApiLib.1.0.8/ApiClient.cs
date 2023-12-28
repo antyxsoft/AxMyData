@@ -6,7 +6,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyData.RestApi
+namespace MyData.ApiLib
 {
 
     /// <summary>
