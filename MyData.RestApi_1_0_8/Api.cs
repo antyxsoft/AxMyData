@@ -10,7 +10,7 @@ namespace MyData.RestApi
     /// </summary>
     static public class Api
     {
- 
+        /* private */
         static ApiClient Client;
 
         static void Throw(string Message)
@@ -70,7 +70,7 @@ namespace MyData.RestApi
         {
         }
 
-
+        /* public */
         /// <summary>
         /// Initializes this class. Must be called before any other call.
         /// </summary>
@@ -88,7 +88,7 @@ namespace MyData.RestApi
             }
         }
 
-        //await Task.CompletedTask;
+ 
 
 
         /// <summary>
@@ -240,9 +240,9 @@ namespace MyData.RestApi
         /// <summary>
         /// Get invoices sent by other entities, concerning this entity or get invoices sent by this entity, concerning other entities. 
         /// </summary>
-        /// <param name="UserName">AADE User Id</param>
-        /// <param name="UserKey">AADE Subscription Key</param>
-        /// <param name="EntityDocs">When true requests documents send by this entiry, when false requests documents send by other entities</param>
+        /// <param name="UserName">Required. AADE User Id</param>
+        /// <param name="UserKey">Required. AADE Subscription Key</param>
+        /// <param name="EntityDocs">Required. When true requests documents send by this entiry, when false requests documents send by other entities</param>
         /// <param name="StartMark">Required. The AADE Mark. Returned documents have Mark greater than this parameter.</param>
         /// <param name="EndMark">Optional. Maximum Mark of documents to return.</param>
         /// <param name="InvoiceCategory">Optional. Invoice Category of documents to return</param>
@@ -300,7 +300,7 @@ namespace MyData.RestApi
                 Throw("RequestDocList: Cannot Request Docs. No StartMark is specified");
 
             StringBuilder SB = new StringBuilder();
-            SB.Append($"?mark={StartMark}");
+            SB.Append($"mark={StartMark}");
             AddQueryParam(SB, "maxMark",            EndMark);
             AddQueryParam(SB, "invType", InvoiceCategory == null ? null : InvoiceCategory.Value);
             AddQueryParam(SB, "entityVatNumber",    EntityVatNumber);
@@ -311,6 +311,9 @@ namespace MyData.RestApi
             AddQueryParam(SB, "nextRowKey",         NextRowKey);
 
             string ActionUrl = EntityDocs ? "RequestTransmittedDocs" : "RequestDocs"; 
+            if (SB.Length > 0)
+                SB.Insert(0, "?");
+
             ActionUrl += SB.ToString();
 
             ApiCall CI = await Client.GetAsync(UserName, UserKey, ActionUrl).ConfigureAwait(false);
@@ -323,11 +326,87 @@ namespace MyData.RestApi
         }
 
 
-        // RequestedBookInfo   RequestMyIncome, RequestMyExpenses
 
-        // https://mydatapi.aade.gr/myDATA/RequestMyIncome? [dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
-        //https://mydataapidev.aade.gr/ RequestMyExpenses?  [dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
+        /// <summary>
+        /// Returns information regarding Incomes or Expenses of the entity.
+        /// <para></para>
+        /// <para>Η κλήση επιστρέφει γραμμές με πληροφορίες για τα έσοδα του χρήστη, 
+        /// για συγκεκριμένο ημερολογιακό κλειστό διάστημα που ορίζεται από τις τιμές των παραμέτρων dateFrom και dateTo. </para>
+        ///  <para>Προαιρετικά η αναζήτηση μπορεί να πραγματοποιηθεί 
+        /// με επιπλέον φίλτρα συγκεκριμένο ΑΦΜ αντισυμβαλλόμενου 
+        /// και συγκεκριμένο τύπο παραστατικού.</para>
+        /// </summary>
+        /// <param name="UserName">Required.AADE User Id</param>
+        /// <param name="UserKey">Required.AADE Subscription Key</param>
+        /// <param name="Income">Required. When true returns the entity Incomes. When false returns the entity Expenses. </param>
+        /// <param name="DateFrom">Required.  Return information having Date greater or equal to this parameter.</param>
+        /// <param name="DateTo">Required.  Return documents having Date lesser or equal to this parameter.</param>
+        /// <param name="CounterVatNumber">Optional. VAT number of the other entity.</param>
+        /// <param name="EntityVatNumber">Optional. VAT number of the sender entity. Required when the sender is a third party, e.g. an accountant.</param>
+        /// <param name="InvoiceCategory">Optional. Invoice Category of documents to return. </param>
+        /// <param name="NextPartitionKey">Optional. Used in getting paged results. Empty in the first call. Comes from the returned value of this call, <see cref="RequestedDoc.continuationToken"/></param>
+        /// <param name="NextRowKey">Optional. Used in getting paged results. Empty in the first call. Comes from the returned value of this call, <see cref="RequestedDoc.continuationToken"/> </param>
+        /// <returns></returns>
+        static async Task<RequestedBookInfo> RequestMyIncomeOrMyExpenses(string UserName, string UserKey,
+                                                                         bool Income,
+                                                                         DateTime? DateFrom = null,
+                                                                         DateTime? DateTo = null,
+                                                                         string CounterVatNumber = null,
+                                                                         string EntityVatNumber = null,
+                                                                         InvoiceCategory InvoiceCategory = null,
+                                                                         string NextPartitionKey = null,
+                                                                         string NextRowKey = null)
+        {
+            /*
+            // https://mydatapi.aade.gr/myDATA/RequestMyIncome?  [dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
+            // https://mydataapidev.aade.gr/ RequestMyExpenses?  [dateFrom]&[dateTo]&[counterVatNumber]&[entityVatNumber]&[invType]&[nextPartitionKey]&[nextRowKey]
 
+            Όνομα Παραμέτρου            Υποχρεωτικό     Περιγραφή
+            -------------------------------------------------------------------
+            dateFrom                    Ναι             Ημερομηνία Από
+            dateTo                      Ναι             Ημερομηνία Έως 
+            counterVatNumber            Όχι             ΑΦΜ αντισυμβαλλόμενου 
+            entityVatNumber             Όχι             ΑΦΜ αναφοράς 
+            invType                     Όχι             Τύπος Παραστατικού
+            nextPartitionKey            Όχι             Παράμετρος για την τμηματική λήψη των αποτελεσμάτων
+            nextRowKey                  Όχι             Παράμετρος για την τμηματική λήψη των αποτελεσμάτων
+ 
+            1) Αν η παράμετρος entityVatNumber έχει τιμή, η αναζήτηση θα πραγματοποιηθεί για αυτόν τον ΑΦΜ, 
+               αλλιώς για τον ΑΦΜ του χρήστη που καλεί την μέθοδο 
+            2) Οι παράμετροι ημερομηνιών πρέπει να εισαχθούν με format dd/MM/yyyy
+            3) Όταν μια προαιρετική παράμετρος δεν εισάγεται, η αναζήτηση πραγματοποιείται 
+               για όλες τις πιθανές τιμές που θα μπορούσε να έχει αυτό το πεδίο
+            4) Στην περίπτωση που τα αποτελέσματα αναζήτησης ξεπερνούν σε μέγεθος το μέγιστο επιτρεπτό όριο 
+               ο χρήστης θα τα λάβει τμηματικά. 
+               Τα πεδία nextPartitionKey και nextRowKey θα εμπεριέχονται σε κάθε τμήμα των αποτελεσμάτων 
+               και θα χρησιμοποιούνται ως παράμετροι στην κλήση για την λήψη του επόμενου τμήματος αποτελεσμάτων
+             */
+
+ 
+            CheckIsInitialized();
+
+            StringBuilder SB = new StringBuilder();
+            AddQueryParam(SB, "dateFrom", DateFrom);
+            AddQueryParam(SB, "dateTo", DateTo);
+            AddQueryParam(SB, "counterVatNumber", CounterVatNumber);
+            AddQueryParam(SB, "entityVatNumber", EntityVatNumber);
+            AddQueryParam(SB, "invType", InvoiceCategory == null ? null : InvoiceCategory.Value);
+            AddQueryParam(SB, "nextPartitionKey", NextPartitionKey);
+            AddQueryParam(SB, "nextRowKey", NextRowKey);
+
+            string ActionUrl = Income ? "RequestMyIncome" : "RequestMyExpenses";
+            if (SB.Length > 0)
+                SB.Insert(0, "?");
+            ActionUrl += SB.ToString();
+
+            ApiCall CI = await Client.GetAsync(UserName, UserKey, ActionUrl).ConfigureAwait(false);
+
+            if (!CI.IsSuccess)
+                Throw(CI.ReasonPhrase);
+
+            RequestedBookInfo Result = ApiXml.Deserialize<RequestedBookInfo>(CI.ResponseText);
+            return Result;
+        }
 
         /* private */
         /// <summary>
