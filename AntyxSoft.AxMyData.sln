@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2D5CFF5F-B
 		Docs\myData Analytiki Perigrafi Leitoyrgias v0.6.20022020.pdf = Docs\myData Analytiki Perigrafi Leitoyrgias v0.6.20022020.pdf
 		Docs\myDATA Epixeirisiaki Analysi Parastatikwn - v.0.6.20022020.pdf = Docs\myDATA Epixeirisiaki Analysi Parastatikwn - v.0.6.20022020.pdf
 		Docs\myDATA_1-8-2019_0.pdf = Docs\myDATA_1-8-2019_0.pdf
+		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XSD_EXE 1.0.8", "XSD_EXE 1.0.8", "{3CC31A52-BD6A-4058-A16E-7A8AD4E0A395}"
@@ -22,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XSD_EXE 1.0.8", "XSD_EXE 1.
 		Docs\XSD_EXE 1.0.8\response-v1_0_8.cs = Docs\XSD_EXE 1.0.8\response-v1_0_8.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyData.ApiLib.1.0.8", "MyData.ApiLib.1.0.8\MyData.ApiLib.1.0.8.csproj", "{B49DD27E-0157-4470-8E7D-A1D3E77CFEA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyData.ApiLib.1.0.8", "MyData.ApiLib.1.0.8\MyData.ApiLib.1.0.8.csproj", "{B49DD27E-0157-4470-8E7D-A1D3E77CFEA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
