@@ -24,24 +24,27 @@ namespace MyData.Xsd
     
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("ErrorType", Namespace="")]
-    public partial class ErrorType
+    [XmlTypeAttribute("EntityType", Namespace="http://www.aade.gr/myDATA/invoice/v1.0")]
+    public partial class EntityType
     {
         
         /// <summary>
-        /// <para>Μήνυμα Σφάλματος</para>
+        /// <para>Κατηγορία</para>
+        /// <para xml:lang="en">Minimum inclusive value: 1.</para>
+        /// <para xml:lang="en">Maximum inclusive value: 6.</para>
         /// </summary>
-        [DescriptionAttribute("Μήνυμα Σφάλματος")]
+        [DescriptionAttribute("Κατηγορία")]
+        [RangeAttribute(typeof(int), "1", "6")]
         [RequiredAttribute()]
-        [XmlElementAttribute("message")]
-        public string message { get; set; }
+        [XmlElementAttribute("type")]
+        public int type { get; set; }
         
         /// <summary>
-        /// <para>Κωδικός Σφάλαματος</para>
+        /// <para>Στοιχεία Οντότητας</para>
         /// </summary>
-        [DescriptionAttribute("Κωδικός Σφάλαματος")]
+        [DescriptionAttribute("Στοιχεία Οντότητας")]
         [RequiredAttribute()]
-        [XmlElementAttribute("code")]
-        public string code { get; set; }
+        [XmlElementAttribute("entityData")]
+        public PartyType entityData { get; set; }
     }
 }

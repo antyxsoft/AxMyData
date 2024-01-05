@@ -12,17 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2D5CFF5F-B
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XSD_EXE 1.0.8", "XSD_EXE 1.0.8", "{3CC31A52-BD6A-4058-A16E-7A8AD4E0A395}"
-	ProjectSection(SolutionItems) = preProject
-		Docs\XSD_EXE 1.0.8\expensesClassification-v1_0_8.cs = Docs\XSD_EXE 1.0.8\expensesClassification-v1_0_8.cs
-		Docs\XSD_EXE 1.0.8\incomeClassification-v1_0_8.cs = Docs\XSD_EXE 1.0.8\incomeClassification-v1_0_8.cs
-		Docs\XSD_EXE 1.0.8\InvoicesDoc-v1_0_8_incomeClassification-v1_0_8_expensesClassification-v1_0_8.cs = Docs\XSD_EXE 1.0.8\InvoicesDoc-v1_0_8_incomeClassification-v1_0_8_expensesClassification-v1_0_8.cs
-		Docs\XSD_EXE 1.0.8\paymentMethods-v1_0_8_InvoicesDoc-v1_0_8_incomeClassification-v1_0_8_expensesClassification-v1_0_8.cs = Docs\XSD_EXE 1.0.8\paymentMethods-v1_0_8_InvoicesDoc-v1_0_8_incomeClassification-v1_0_8_expensesClassification-v1_0_8.cs
-		Docs\XSD_EXE 1.0.8\requestedInvoicesDoc-v1_0_8_incomeClassification-v1_0_8_expensesClassification-v1_0_8_paymentMethods-v1_0_8_InvoicesDoc-v1_0_8.cs = Docs\XSD_EXE 1.0.8\requestedInvoicesDoc-v1_0_8_incomeClassification-v1_0_8_expensesClassification-v1_0_8_paymentMethods-v1_0_8_InvoicesDoc-v1_0_8.cs
-		Docs\XSD_EXE 1.0.8\RequestedProviderDoc-v1_0_8.cs = Docs\XSD_EXE 1.0.8\RequestedProviderDoc-v1_0_8.cs
-		Docs\XSD_EXE 1.0.8\response-v1_0_8.cs = Docs\XSD_EXE 1.0.8\response-v1_0_8.cs
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyData.ApiLib.1.0.8", "MyData.ApiLib.1.0.8\MyData.ApiLib.1.0.8.csproj", "{B49DD27E-0157-4470-8E7D-A1D3E77CFEA2}"
 EndProject
 Global
@@ -38,9 +27,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3CC31A52-BD6A-4058-A16E-7A8AD4E0A395} = {2D5CFF5F-B249-49F2-BDE6-54B30084F783}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A005BAE-F4A1-4350-916D-90235884F9AF}

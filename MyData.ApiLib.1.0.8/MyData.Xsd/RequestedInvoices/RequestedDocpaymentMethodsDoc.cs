@@ -24,51 +24,47 @@ namespace MyData.Xsd
     
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("receptionProvidersType", Namespace="")]
-    public partial class receptionProvidersType
+    [XmlTypeAttribute("RequestedDocpaymentMethodsDoc", Namespace="http://www.aade.gr/myDATA/invoice/v1.0", AnonymousType=true)]
+    public partial class RequestedDocpaymentMethodsDoc
     {
         
         [XmlIgnoreAttribute()]
-        private List<ProviderInfoType> _providerInfo;
+        private List<MyData.Xsd.PaymentMethodType> _paymentMethods;
         
-        /// <summary>
-        /// <para>Πληροφορίες Παρόχου</para>
-        /// </summary>
-        [DescriptionAttribute("Πληροφορίες Παρόχου")]
-        [XmlElementAttribute("ProviderInfo")]
-        public List<ProviderInfoType> ProviderInfo
+        [XmlElementAttribute("paymentMethods")]
+        public List<MyData.Xsd.PaymentMethodType> paymentMethods
         {
             get
             {
-                return _providerInfo;
+                return _paymentMethods;
             }
             set
             {
-                _providerInfo = value;
+                _paymentMethods = value;
             }
         }
         
         /// <summary>
-        /// <para xml:lang="de">Ruft einen Wert ab, der angibt, ob die ProviderInfo-Collection leer ist.</para>
-        /// <para xml:lang="en">Gets a value indicating whether the ProviderInfo collection is empty.</para>
+        /// <para xml:lang="de">Ruft einen Wert ab, der angibt, ob die paymentMethods-Collection leer ist.</para>
+        /// <para xml:lang="en">Gets a value indicating whether the paymentMethods collection is empty.</para>
         /// </summary>
         [XmlIgnoreAttribute()]
-        public bool ProviderInfoSpecified
+        public bool paymentMethodsSpecified
         {
             get
             {
-                return ((this.ProviderInfo != null) 
-                            && (this.ProviderInfo.Count != 0));
+                return ((this.paymentMethods != null) 
+                            && (this.paymentMethods.Count != 0));
             }
         }
         
         /// <summary>
-        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="receptionProvidersType" /> Klasse.</para>
-        /// <para xml:lang="en">Initializes a new instance of the <see cref="receptionProvidersType" /> class.</para>
+        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="RequestedDocpaymentMethodsDoc" /> Klasse.</para>
+        /// <para xml:lang="en">Initializes a new instance of the <see cref="RequestedDocpaymentMethodsDoc" /> class.</para>
         /// </summary>
-        public receptionProvidersType()
+        public RequestedDocpaymentMethodsDoc()
         {
-            this._providerInfo = new List<ProviderInfoType>();
+            this._paymentMethods = new List<MyData.Xsd.PaymentMethodType>();
         }
     }
 }

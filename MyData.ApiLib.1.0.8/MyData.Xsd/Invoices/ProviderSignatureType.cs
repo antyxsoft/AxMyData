@@ -24,24 +24,26 @@ namespace MyData.Xsd
     
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("ErrorType", Namespace="")]
-    public partial class ErrorType
+    [XmlTypeAttribute("ProviderSignatureType", Namespace="http://www.aade.gr/myDATA/invoice/v1.0")]
+    public partial class ProviderSignatureType
     {
         
         /// <summary>
-        /// <para>Μήνυμα Σφάλματος</para>
+        /// <para>Provider’s Id</para>
+        /// <para xml:lang="en">Maximum length: 20.</para>
         /// </summary>
-        [DescriptionAttribute("Μήνυμα Σφάλματος")]
+        [DescriptionAttribute("Provider’s Id")]
+        [MaxLengthAttribute(20)]
         [RequiredAttribute()]
-        [XmlElementAttribute("message")]
-        public string message { get; set; }
+        [XmlElementAttribute("SigningAuthor")]
+        public string SigningAuthor { get; set; }
         
         /// <summary>
-        /// <para>Κωδικός Σφάλαματος</para>
+        /// <para>Υπογραφή</para>
         /// </summary>
-        [DescriptionAttribute("Κωδικός Σφάλαματος")]
+        [DescriptionAttribute("Υπογραφή")]
         [RequiredAttribute()]
-        [XmlElementAttribute("code")]
-        public string code { get; set; }
+        [XmlElementAttribute("Signature")]
+        public string Signature { get; set; }
     }
 }

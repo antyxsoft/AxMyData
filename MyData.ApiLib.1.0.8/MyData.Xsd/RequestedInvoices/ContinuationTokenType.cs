@@ -24,24 +24,17 @@ namespace MyData.Xsd
     
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("ErrorType", Namespace="")]
-    public partial class ErrorType
+    [XmlTypeAttribute("continuationTokenType", Namespace="http://www.aade.gr/myDATA/invoice/v1.0")]
+    [XmlRootAttribute("continuationTokenType", Namespace="http://www.aade.gr/myDATA/invoice/v1.0")]
+    public partial class ContinuationTokenType
     {
         
-        /// <summary>
-        /// <para>Μήνυμα Σφάλματος</para>
-        /// </summary>
-        [DescriptionAttribute("Μήνυμα Σφάλματος")]
         [RequiredAttribute()]
-        [XmlElementAttribute("message")]
-        public string message { get; set; }
+        [XmlElementAttribute("nextPartitionKey")]
+        public string nextPartitionKey { get; set; }
         
-        /// <summary>
-        /// <para>Κωδικός Σφάλαματος</para>
-        /// </summary>
-        [DescriptionAttribute("Κωδικός Σφάλαματος")]
         [RequiredAttribute()]
-        [XmlElementAttribute("code")]
-        public string code { get; set; }
+        [XmlElementAttribute("nextRowKey")]
+        public string nextRowKey { get; set; }
     }
 }

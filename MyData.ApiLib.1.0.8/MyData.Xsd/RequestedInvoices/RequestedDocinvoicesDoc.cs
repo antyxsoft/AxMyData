@@ -24,51 +24,47 @@ namespace MyData.Xsd
     
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("receptionProvidersType", Namespace="")]
-    public partial class receptionProvidersType
+    [XmlTypeAttribute("RequestedDocinvoicesDoc", Namespace="http://www.aade.gr/myDATA/invoice/v1.0", AnonymousType=true)]
+    public partial class RequestedDocinvoicesDoc
     {
         
         [XmlIgnoreAttribute()]
-        private List<ProviderInfoType> _providerInfo;
+        private List<MyData.Xsd.AadeBookInvoiceType> _invoice;
         
-        /// <summary>
-        /// <para>Πληροφορίες Παρόχου</para>
-        /// </summary>
-        [DescriptionAttribute("Πληροφορίες Παρόχου")]
-        [XmlElementAttribute("ProviderInfo")]
-        public List<ProviderInfoType> ProviderInfo
+        [XmlElementAttribute("invoice")]
+        public List<MyData.Xsd.AadeBookInvoiceType> invoice
         {
             get
             {
-                return _providerInfo;
+                return _invoice;
             }
             set
             {
-                _providerInfo = value;
+                _invoice = value;
             }
         }
         
         /// <summary>
-        /// <para xml:lang="de">Ruft einen Wert ab, der angibt, ob die ProviderInfo-Collection leer ist.</para>
-        /// <para xml:lang="en">Gets a value indicating whether the ProviderInfo collection is empty.</para>
+        /// <para xml:lang="de">Ruft einen Wert ab, der angibt, ob die invoice-Collection leer ist.</para>
+        /// <para xml:lang="en">Gets a value indicating whether the invoice collection is empty.</para>
         /// </summary>
         [XmlIgnoreAttribute()]
-        public bool ProviderInfoSpecified
+        public bool invoiceSpecified
         {
             get
             {
-                return ((this.ProviderInfo != null) 
-                            && (this.ProviderInfo.Count != 0));
+                return ((this.invoice != null) 
+                            && (this.invoice.Count != 0));
             }
         }
         
         /// <summary>
-        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="receptionProvidersType" /> Klasse.</para>
-        /// <para xml:lang="en">Initializes a new instance of the <see cref="receptionProvidersType" /> class.</para>
+        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="RequestedDocinvoicesDoc" /> Klasse.</para>
+        /// <para xml:lang="en">Initializes a new instance of the <see cref="RequestedDocinvoicesDoc" /> class.</para>
         /// </summary>
-        public receptionProvidersType()
+        public RequestedDocinvoicesDoc()
         {
-            this._providerInfo = new List<ProviderInfoType>();
+            this._invoice = new List<MyData.Xsd.AadeBookInvoiceType>();
         }
     }
 }

@@ -24,51 +24,47 @@ namespace MyData.Xsd
     
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("receptionProvidersType", Namespace="")]
-    public partial class receptionProvidersType
+    [XmlTypeAttribute("RequestedDoccancelledInvoicesDoc", Namespace="http://www.aade.gr/myDATA/invoice/v1.0", AnonymousType=true)]
+    public partial class RequestedDoccancelledInvoicesDoc
     {
         
         [XmlIgnoreAttribute()]
-        private List<ProviderInfoType> _providerInfo;
+        private List<CancelledInvoiceType> _cancelledInvoice;
         
-        /// <summary>
-        /// <para>Πληροφορίες Παρόχου</para>
-        /// </summary>
-        [DescriptionAttribute("Πληροφορίες Παρόχου")]
-        [XmlElementAttribute("ProviderInfo")]
-        public List<ProviderInfoType> ProviderInfo
+        [XmlElementAttribute("cancelledInvoice")]
+        public List<CancelledInvoiceType> cancelledInvoice
         {
             get
             {
-                return _providerInfo;
+                return _cancelledInvoice;
             }
             set
             {
-                _providerInfo = value;
+                _cancelledInvoice = value;
             }
         }
         
         /// <summary>
-        /// <para xml:lang="de">Ruft einen Wert ab, der angibt, ob die ProviderInfo-Collection leer ist.</para>
-        /// <para xml:lang="en">Gets a value indicating whether the ProviderInfo collection is empty.</para>
+        /// <para xml:lang="de">Ruft einen Wert ab, der angibt, ob die cancelledInvoice-Collection leer ist.</para>
+        /// <para xml:lang="en">Gets a value indicating whether the cancelledInvoice collection is empty.</para>
         /// </summary>
         [XmlIgnoreAttribute()]
-        public bool ProviderInfoSpecified
+        public bool cancelledInvoiceSpecified
         {
             get
             {
-                return ((this.ProviderInfo != null) 
-                            && (this.ProviderInfo.Count != 0));
+                return ((this.cancelledInvoice != null) 
+                            && (this.cancelledInvoice.Count != 0));
             }
         }
         
         /// <summary>
-        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="receptionProvidersType" /> Klasse.</para>
-        /// <para xml:lang="en">Initializes a new instance of the <see cref="receptionProvidersType" /> class.</para>
+        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="RequestedDoccancelledInvoicesDoc" /> Klasse.</para>
+        /// <para xml:lang="en">Initializes a new instance of the <see cref="RequestedDoccancelledInvoicesDoc" /> class.</para>
         /// </summary>
-        public receptionProvidersType()
+        public RequestedDoccancelledInvoicesDoc()
         {
-            this._providerInfo = new List<ProviderInfoType>();
+            this._cancelledInvoice = new List<CancelledInvoiceType>();
         }
     }
 }

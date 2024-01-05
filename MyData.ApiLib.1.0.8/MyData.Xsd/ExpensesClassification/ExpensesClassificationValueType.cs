@@ -24,8 +24,8 @@ namespace MyData.Xsd
     
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("ExpensesClassificationTypeclassificationType", Namespace="https://www.aade.gr/myDATA/expensesClassificaton/v1.0", AnonymousType=true)]
-    public enum ExpensesClassificationTypeclassificationType
+    [XmlTypeAttribute("ExpensesClassificationValueType", Namespace="https://www.aade.gr/myDATA/expensesClassificaton/v1.0")]
+    public enum ExpensesClassificationValueType
     {
         
         E3_101,

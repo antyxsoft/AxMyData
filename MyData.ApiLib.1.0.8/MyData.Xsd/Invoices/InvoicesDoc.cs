@@ -22,36 +22,41 @@ namespace MyData.Xsd
     using System.Xml.Serialization;
     
     
+    /// <summary>
+    /// <para>Παραστατικό ΑΑΔΕ</para>
+    /// </summary>
+    [DescriptionAttribute("Παραστατικό ΑΑΔΕ")]
     [GeneratedCodeAttribute("XmlSchemaClassGenerator", "2.1.1057.0")]
     [SerializableAttribute()]
-    [XmlTypeAttribute("ResponseTypeerrors", Namespace="", AnonymousType=true)]
-    public partial class ResponseTypeerrors
+    [XmlTypeAttribute("InvoicesDoc", Namespace="http://www.aade.gr/myDATA/invoice/v1.0", AnonymousType=true)]
+    [XmlRootAttribute("InvoicesDoc", Namespace="http://www.aade.gr/myDATA/invoice/v1.0")]
+    public partial class InvoicesDoc
     {
         
         [XmlIgnoreAttribute()]
-        private List<ErrorType> _error;
+        private List<AadeBookInvoiceType> _invoice;
         
         [RequiredAttribute()]
-        [XmlElementAttribute("error")]
-        public List<ErrorType> error
+        [XmlElementAttribute("invoice")]
+        public List<AadeBookInvoiceType> invoice
         {
             get
             {
-                return _error;
+                return _invoice;
             }
             set
             {
-                _error = value;
+                _invoice = value;
             }
         }
         
         /// <summary>
-        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="ResponseTypeerrors" /> Klasse.</para>
-        /// <para xml:lang="en">Initializes a new instance of the <see cref="ResponseTypeerrors" /> class.</para>
+        /// <para xml:lang="de">Initialisiert eine neue Instanz der <see cref="InvoicesDoc" /> Klasse.</para>
+        /// <para xml:lang="en">Initializes a new instance of the <see cref="InvoicesDoc" /> class.</para>
         /// </summary>
-        public ResponseTypeerrors()
+        public InvoicesDoc()
         {
-            this._error = new List<ErrorType>();
+            this._invoice = new List<AadeBookInvoiceType>();
         }
     }
 }
