@@ -37,8 +37,8 @@ namespace MyData.ApiLib.Validation
             if (!InvoiceCategory.Exists(Model.invoiceType))
                 ErrorList.Add("Δεν έχει οριστεί: ΑΑ Παραστατικού");
 
-            if (!string.IsNullOrWhiteSpace(Model.currency) && !IsValidCurrency(Model.currency))
-                ErrorList.Add("Μη έγκυρη τιμή: Νόμισμα");
+            //if (!string.IsNullOrWhiteSpace(Model.currency) && !IsValidCurrency(Model.currency))
+            //    ErrorList.Add("Μη έγκυρη τιμή: Νόμισμα");
 
             if (Model.exchangeRate < 0)
                 ErrorList.Add("Μη έγκυρη τιμή: Ισοτιμία");
