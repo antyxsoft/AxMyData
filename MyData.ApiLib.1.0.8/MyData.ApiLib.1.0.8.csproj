@@ -1,10 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>MyData.ApiLib</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <!-- <Nullable>enable</Nullable> -->
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>MyData.ApiLib</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AssemblyVersion>24.1.4</AssemblyVersion>
+		<ProductVersion>24.1.4</ProductVersion>
+
+		<!-- PACKAGE -->
+		<Title>MyData.ApiLib.1.0.8</Title>
+		<Version>24.1.4</Version>
+		<Authors>Theodoros Bebekis</Authors>
+		<Product>MyData.ApiLib.1.0.8</Product>
+		<Company>AntyxSoft</Company>
+		<Description>A C# library over the MyData API v1.0.8</Description>
+		<Copyright>Theodoros Bebekis 2024</Copyright>
+	</PropertyGroup>
 
 </Project>

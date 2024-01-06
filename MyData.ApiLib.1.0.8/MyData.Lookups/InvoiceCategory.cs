@@ -121,7 +121,10 @@
                 return fList;
             }
         }
-
+        static public bool Exists(InvoiceType Value)
+        {
+            return List.FirstOrDefault(item => item.Value == Value) != null;
+        }
  
     }
 }

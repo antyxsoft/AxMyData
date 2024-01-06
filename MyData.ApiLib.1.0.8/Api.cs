@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
+using MyData.ApiLib.Validation;
 
 namespace MyData.ApiLib
 {
- 
+
     /// <summary>
     /// Helper for the MyData Api.
     /// <para>Contains calls for MyData Api HTTP calls.</para>
@@ -87,8 +88,6 @@ namespace MyData.ApiLib
                 IsInitialized = true;
             }
         }
-
- 
 
 
         /// <summary>

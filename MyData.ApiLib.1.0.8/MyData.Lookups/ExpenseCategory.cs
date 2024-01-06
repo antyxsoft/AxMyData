@@ -1,5 +1,6 @@
 ﻿namespace MyData.Xsd
 {
+    /// <summary>
     /// Παράρτημα: Κωδικός Κατηγορίας Χαρακτηρισμού Εξόδων
     /// <para>FOR: <see cref="ExpensesClassificationType.classificationCategory"/> property </para>
     /// <para>XSD Type: ExpensesClassificationCategoryType </para>
