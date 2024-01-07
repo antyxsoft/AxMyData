@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
-using MyData.ApiLib.Validation;
-
-namespace MyData.ApiLib
+﻿namespace MyData.ApiLib
 {
 
     /// <summary>
