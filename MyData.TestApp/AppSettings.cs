@@ -39,10 +39,17 @@ namespace MyData.TestApp
             Json.SaveToFile(this, FileName);
         }
 
+        /// <summary>
+        /// MyData API EndPoint
+        /// </summary>
+        public string ApiEndPoint { get; set; } = @"https://mydataapidev.aade.gr";
+        
+
         /* properties */
         /// <summary>
         /// MyData connection information
         /// </summary>
         public MyDataConnection MyDataConnection { get; set; } = new MyDataConnection();
+       
     }
 }

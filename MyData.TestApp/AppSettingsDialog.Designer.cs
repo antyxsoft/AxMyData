@@ -1,6 +1,6 @@
 ﻿namespace MyData.TestApp
 {
-    partial class MyDataConnectionDialog
+    partial class AppSettingsDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,7 @@
             btnOK = new Button();
             edtApiEndPoint = new TextBox();
             label3 = new Label();
+            chIsInvoicingProvider = new CheckBox();
             SuspendLayout();
             // 
             // label1
@@ -76,7 +77,7 @@
             // 
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(355, 127);
+            btnCancel.Location = new Point(355, 160);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 32);
             btnCancel.TabIndex = 4;
@@ -86,7 +87,7 @@
             // btnOK
             // 
             btnOK.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnOK.Location = new Point(277, 127);
+            btnOK.Location = new Point(277, 160);
             btnOK.Name = "btnOK";
             btnOK.Size = new Size(75, 32);
             btnOK.TabIndex = 5;
@@ -110,11 +111,22 @@
             label3.TabIndex = 6;
             label3.Text = "Api EndPoint";
             // 
-            // MyDataConnectionDialog
+            // chIsInvoicingProvider
+            // 
+            chIsInvoicingProvider.AutoSize = true;
+            chIsInvoicingProvider.Location = new Point(30, 115);
+            chIsInvoicingProvider.Name = "chIsInvoicingProvider";
+            chIsInvoicingProvider.Size = new Size(133, 19);
+            chIsInvoicingProvider.TabIndex = 8;
+            chIsInvoicingProvider.Text = "Is Invoicing Provider";
+            chIsInvoicingProvider.UseVisualStyleBackColor = true;
+            // 
+            // AppSettingsDialog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(435, 161);
+            ClientSize = new Size(435, 194);
+            Controls.Add(chIsInvoicingProvider);
             Controls.Add(edtApiEndPoint);
             Controls.Add(label3);
             Controls.Add(btnOK);
@@ -125,7 +137,7 @@
             Controls.Add(label1);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "MyDataConnectionDialog";
+            Name = "AppSettingsDialog";
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MyData Connection Information";
@@ -143,5 +155,6 @@
         private Button btnOK;
         private TextBox edtApiEndPoint;
         private Label label3;
+        private CheckBox chIsInvoicingProvider;
     }
 }

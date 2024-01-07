@@ -13,7 +13,12 @@ namespace MyData.TestApp
             }
             else if (btnApiKeyDialog == sender)
             {
-                MyDataConnectionDialog.ShowModal();
+                AppSettingsDialog.ShowModal();
+            }
+
+            else if (btnTestValidation == sender)
+            {
+                TestValidation();
             }
         }
 
@@ -22,8 +27,26 @@ namespace MyData.TestApp
             btnExit.Click += AnyClick;
             btnApiKeyDialog.Click += AnyClick;
 
+
+            btnTestValidation.Click += AnyClick;
+
             //InvoiceHeaderType IH = new InvoiceHeaderType();
         }
+
+
+
+
+        void TestValidation()
+        {
+            
+
+            string Results = Validators.Test();
+            if (!string .IsNullOrWhiteSpace(Results))
+            {
+                Log(Results);
+            }
+        }
+ 
 
         void ScrollToEnd()
         {

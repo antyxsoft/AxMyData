@@ -20,8 +20,9 @@ namespace MyData.TestApp
         /// </summary>
         public string Key { get; set; }
         /// <summary>
-        /// MyData API EndPoint
+        /// True when this library is used by a third party Invoicing Provider on behalf of a Company Entity.
         /// </summary>
-        public string ApiEndPoint { get; set; } = @"https://mydataapidev.aade.gr";
+        public bool IsInvoicingProvider { get; set; }
+
     }
 }

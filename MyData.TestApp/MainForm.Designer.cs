@@ -36,7 +36,8 @@
             Splitter = new SplitContainer();
             Pager = new TabControl();
             tabSendInvoices = new TabPage();
-            tabPage2 = new TabPage();
+            tabMiscs = new TabPage();
+            btnTestValidation = new Button();
             edtLog = new RichTextBox();
             ToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Splitter).BeginInit();
@@ -44,6 +45,7 @@
             Splitter.Panel2.SuspendLayout();
             Splitter.SuspendLayout();
             Pager.SuspendLayout();
+            tabMiscs.SuspendLayout();
             SuspendLayout();
             // 
             // ToolBar
@@ -109,7 +111,7 @@
             // Pager
             // 
             Pager.Controls.Add(tabSendInvoices);
-            Pager.Controls.Add(tabPage2);
+            Pager.Controls.Add(tabMiscs);
             Pager.Dock = DockStyle.Fill;
             Pager.Location = new Point(0, 0);
             Pager.Name = "Pager";
@@ -127,20 +129,31 @@
             tabSendInvoices.Text = "Send Invoices";
             tabSendInvoices.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabMiscs
             // 
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1000, 568);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabMiscs.Controls.Add(btnTestValidation);
+            tabMiscs.Location = new Point(4, 24);
+            tabMiscs.Name = "tabMiscs";
+            tabMiscs.Padding = new Padding(3);
+            tabMiscs.Size = new Size(1000, 568);
+            tabMiscs.TabIndex = 1;
+            tabMiscs.Text = "Miscs";
+            tabMiscs.UseVisualStyleBackColor = true;
+            // 
+            // btnTestValidation
+            // 
+            btnTestValidation.Location = new Point(8, 6);
+            btnTestValidation.Name = "btnTestValidation";
+            btnTestValidation.Size = new Size(254, 32);
+            btnTestValidation.TabIndex = 0;
+            btnTestValidation.Text = "Test Validation";
+            btnTestValidation.UseVisualStyleBackColor = true;
             // 
             // edtLog
             // 
             edtLog.BackColor = Color.Gainsboro;
             edtLog.Dock = DockStyle.Fill;
+            edtLog.Font = new Font("Courier New", 9F);
             edtLog.Location = new Point(0, 0);
             edtLog.Name = "edtLog";
             edtLog.Size = new Size(1008, 66);
@@ -165,6 +178,7 @@
             ((System.ComponentModel.ISupportInitialize)Splitter).EndInit();
             Splitter.ResumeLayout(false);
             Pager.ResumeLayout(false);
+            tabMiscs.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -178,8 +192,9 @@
         private RichTextBox edtLog;
         private TabControl Pager;
         private TabPage tabSendInvoices;
-        private TabPage tabPage2;
+        private TabPage tabMiscs;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnExit;
+        private Button btnTestValidation;
     }
 }

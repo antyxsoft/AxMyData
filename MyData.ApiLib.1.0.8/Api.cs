@@ -71,10 +71,12 @@
         /// <summary>
         /// Initializes this class. Must be called before any other call.
         /// </summary>
-        static public void Initialize(string BaseUrl)
+        static public void Initialize(string BaseUrl, bool IsInvoicingProvider)
         {
             if (!IsInitialized)
             {
+                Api.IsInvoicingProvider = IsInvoicingProvider;
+
                 Client = new ApiClient(BaseUrl);
 
                 Client.OnError += Client_OnError;
@@ -103,7 +105,7 @@
         static public async Task<ResponseDoc> SendInvoiceList(string UserName, string UserKey, InvoicesDoc List)
         {
             CheckIsInitialized();
-            CheckErrors(ModelValidator.Validate(List));
+            CheckErrors(Validators.Validate(List));
             string ActionUrl = "SendInvoices";
 
             ApiCall CI = await Client.PostAsync(UserName, UserKey, ActionUrl, List).ConfigureAwait(false);
@@ -132,7 +134,7 @@
         static public async Task<ResponseDoc> SendIncomeClassificationList(string UserName, string UserKey, IncomeClassificationsDoc List)
         {
             CheckIsInitialized();
-            CheckErrors(ModelValidator.Validate(List));
+            CheckErrors(Validators.Validate(List));
             string ActionUrl = "SendIncomeClassification";
 
             ApiCall CI = await Client.PostAsync(UserName, UserKey, ActionUrl, List).ConfigureAwait(false);
@@ -161,7 +163,7 @@
         static public async Task<ResponseDoc> SendExpenseClassificationList(string UserName, string UserKey, ExpensesClassificationsDoc List)
         {
             CheckIsInitialized();
-            CheckErrors(ModelValidator.Validate(List));
+            CheckErrors(Validators.Validate(List));
             string ActionUrl = "SendExpensesClassification";
 
             ApiCall CI = await Client.PostAsync(UserName, UserKey, ActionUrl, List).ConfigureAwait(false);
@@ -190,7 +192,7 @@
         static public async Task<ResponseDoc> SendPaymentMethodList(string UserName, string UserKey, PaymentMethodsDoc List)
         {
             CheckIsInitialized();
-            CheckErrors(ModelValidator.Validate(List));
+            CheckErrors(Validators.Validate(List));
             string ActionUrl = "SendPaymentsMethod";
 
             ApiCall CI = await Client.PostAsync(UserName, UserKey, ActionUrl, List).ConfigureAwait(false);
@@ -408,5 +410,9 @@
         /// True indicates that this class is initialized.
         /// </summary>
         static public bool IsInitialized { get; private set; }
+        /// <summary>
+        /// True when this library is used by a third party Invoicing Provider on behalf of a Company Entity.
+        /// </summary>
+        static public bool IsInvoicingProvider { get; private set; }
     }
 }

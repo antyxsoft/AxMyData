@@ -30,8 +30,7 @@ namespace MyData.Xsd
     [XmlTypeAttribute("InvoicesDoc", Namespace="http://www.aade.gr/myDATA/invoice/v1.0", AnonymousType=true)]
     [XmlRootAttribute("InvoicesDoc", Namespace="http://www.aade.gr/myDATA/invoice/v1.0")]
     public partial class InvoicesDoc
-    {
-        
+    {        
         [RequiredAttribute()]
         [XmlElementAttribute("invoice")]
         public List<AadeBookInvoiceType> invoice { get; set; }

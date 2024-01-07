@@ -1,1 +1,1 @@
-﻿This folder contains look-up like list classes for various MyData enum or int types
+﻿This folder contains look-up like list classes for various MyData enum or int[] types

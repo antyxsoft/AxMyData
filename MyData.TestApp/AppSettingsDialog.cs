@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MyData.TestApp
 {
-    public partial class MyDataConnectionDialog : Form
+    public partial class AppSettingsDialog : Form
     {
         void AnyClick(object sender, EventArgs e)
         {
@@ -23,7 +23,8 @@ namespace MyData.TestApp
                 {
                     App.Settings.MyDataConnection.User = edtUser.Text.Trim();
                     App.Settings.MyDataConnection.Key = edtKey.Text.Trim();
-                    App.Settings.MyDataConnection.ApiEndPoint = edtApiEndPoint.Text.Trim();
+                    App.Settings.MyDataConnection.IsInvoicingProvider = chIsInvoicingProvider.Checked;
+                    App.Settings.ApiEndPoint = edtApiEndPoint.Text.Trim();
 
                     App.Settings.Save();
                     this.DialogResult = DialogResult.OK;
@@ -40,7 +41,9 @@ namespace MyData.TestApp
 
             edtUser.Text = App.Settings.MyDataConnection.User;
             edtKey.Text = App.Settings.MyDataConnection.Key;
-            edtApiEndPoint.Text = App.Settings.MyDataConnection.ApiEndPoint;
+            chIsInvoicingProvider.Checked = App.Settings.MyDataConnection.IsInvoicingProvider;
+            edtApiEndPoint.Text = App.Settings.ApiEndPoint;
+            
         }
         /* overrides */
         protected override void OnShown(EventArgs e)
@@ -49,7 +52,7 @@ namespace MyData.TestApp
                 FormInitialize();
             base.OnShown(e);
         }
-        public MyDataConnectionDialog()
+        public AppSettingsDialog()
         {
             InitializeComponent();
         }
@@ -57,7 +60,7 @@ namespace MyData.TestApp
 
         static public bool ShowModal()
         {
-            using (var F = new MyDataConnectionDialog())
+            using (var F = new AppSettingsDialog())
             {
                 return F.ShowDialog() == DialogResult.OK;
             }

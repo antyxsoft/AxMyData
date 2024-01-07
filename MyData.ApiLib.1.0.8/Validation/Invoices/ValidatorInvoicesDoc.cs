@@ -1,10 +1,10 @@
-﻿namespace MyData.ApiLib
+﻿using System.Reflection;
+
+namespace MyData.ApiLib
 {
+    /*
     static public class InvoicesValidator
-    {
-        static readonly PropertyInfo[] PropList = typeof(InvoiceHeaderType).GetProperties();
-
-
+    {   
         static public void Validate(List<string> ErrorList, InvoiceHeaderType Model)
         {
             if (string.IsNullOrWhiteSpace(Model.series))
@@ -32,6 +32,41 @@
             ModelValidator.ValidateModel(ErrorList, Model);
         }
     }
+
+
+ 
+ 
+    */
+
+ 
+
+    public class ValidatorInvoicesDoc : Validator
+    {
+        public ValidatorInvoicesDoc()
+            : base(typeof(InvoicesDoc))
+        {
+        }
+        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
+        {
+            Validate(Model as InvoicesDoc, ParentModel, ErrorList);
+        }
+
+        void Validate(InvoicesDoc Model, object ParentModel, List<string> ErrorList)
+        { 
+            Validators.ValidatePropertiesByAttributes(Model, ErrorList); 
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
