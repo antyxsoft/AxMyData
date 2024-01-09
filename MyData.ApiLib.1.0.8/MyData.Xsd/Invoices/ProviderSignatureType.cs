@@ -36,9 +36,10 @@ namespace MyData.Xsd
         [RequiredAttribute()]
         [XmlElementAttribute("SigningAuthor")]
         public string SigningAuthor { get; set; }
-        
+
         /// <summary>
         /// <para>Υπογραφή</para>
+        /// <para>Λεπτομέρειες στην υπ’ αριθμ. Α. 1155/09-10-2023 απόφαση (ΦΕΚ 5992 Β΄/13.10.2023), όπως ισχύει</para>
         /// </summary>
         [DescriptionAttribute("Υπογραφή")]
         [RequiredAttribute()]

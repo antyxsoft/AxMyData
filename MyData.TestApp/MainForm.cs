@@ -1,4 +1,5 @@
 using System.Data;
+using System.Xml;
 
 namespace MyData.TestApp
 {
@@ -30,10 +31,21 @@ namespace MyData.TestApp
 
             btnTestValidation.Click += AnyClick;
 
-            //InvoiceHeaderType IH = new InvoiceHeaderType();
+
+ 
         }
 
-
+        void TestSerialization()
+        {
+            AadeBookInvoiceType Invoice = new AadeBookInvoiceType();
+            Invoice.uid = "XXXXXXXX";
+            Invoice.mark = 12345;
+            InvoiceHeaderType invoiceHeaderType = new InvoiceHeaderType();
+            invoiceHeaderType.currency = CurrencyType.HTG;
+            Invoice.invoiceHeader = invoiceHeaderType;
+            string XmlText = ApiXml.Serialize(Invoice);
+            Log(XmlText);
+        }
 
 
         void TestValidation()

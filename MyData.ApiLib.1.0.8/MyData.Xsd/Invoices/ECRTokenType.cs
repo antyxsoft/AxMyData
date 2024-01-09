@@ -36,11 +36,12 @@ namespace MyData.Xsd
         [RequiredAttribute()]
         [XmlElementAttribute("SigningAuthor")]
         public string SigningAuthor { get; set; }
-        
+
         /// <summary>
         /// <para>Μοναδικός 6-ψήφιος κωδικός που χαρακτηρίζει την κάθε συναλλαγή</para>
         /// <para xml:lang="en">Minimum length: 6.</para>
         /// <para xml:lang="en">Maximum length: 6.</para>
+        /// <para>Λεπτομέρειες στην υπ’ αριθμ. Α. 1155/09-10-2023 απόφαση (ΦΕΚ 5992 Β΄/13.10.2023), όπως ισχύει</para>
         /// </summary>
         [DescriptionAttribute("Μοναδικός 6-ψήφιος κωδικός που χαρακτηρίζει την κάθε συναλλαγή")]
         [MinLengthAttribute(6)]

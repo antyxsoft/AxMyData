@@ -93,9 +93,13 @@ namespace MyData.ApiLib
         }
         static public PropertyInfo GetProperty(Type Type, string PropName)
         {
-            PropertyInfo[] PropList = TypePropertiesDic[Type];
+            PropertyInfo[] PropList = GetProperties(Type);
             PropertyInfo Result = PropList.FirstOrDefault(x => x.Name == PropName);
             return Result;
+        }
+        static public PropertyInfo GetProperty(object Model, string PropName)
+        {
+            return GetProperty(Model.GetType(), PropName);
         }
         /// <summary>
         /// Returns a property's <see cref="Attribute"/>, if exists, else null.
@@ -122,7 +126,16 @@ namespace MyData.ApiLib
 
             return $"{ClassDescription} - Ιδιότητα: {PropName} - Τύπος: {Prop.PropertyType.Name} - Περιγραφή: {Description}";
         }
+        static public string GetPropertyDescription(object Model,  string PropName)
+        {
+            PropertyInfo Prop = GetProperty(Model, PropName);
+            return GetPropertyDescription(Prop);
+        }
 
-
+        static public string FormatPropertyError(object Model, string PropName, string ErrorMessage)
+        {
+            string PropDescription = Validators.GetPropertyDescription(Model, PropName);
+            return $"{PropDescription} - {ErrorMessage}";
+        }
     }
 }

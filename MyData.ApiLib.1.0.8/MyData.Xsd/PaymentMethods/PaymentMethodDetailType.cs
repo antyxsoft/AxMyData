@@ -48,9 +48,10 @@ namespace MyData.Xsd
         [RequiredAttribute()]
         [XmlElementAttribute("amount")]
         public decimal amount { get; set; }
-        
+
         /// <summary>
         /// <para>Λοιπές Πληροφορίες</para>
+        /// <para>Το πεδίο μπορεί να περιέχει επιπλέον πληροφορίες σχετικά με τον συγκεκριμένο τύπο (πχ Αρ. Λογαριασμού Τραπέζης)</para>
         /// </summary>
         [DescriptionAttribute("Λοιπές Πληροφορίες")]
         [XmlElementAttribute("paymentMethodInfo")]
@@ -65,16 +66,18 @@ namespace MyData.Xsd
         [DescriptionAttribute("Φιλοδώρημα")]
         [XmlElementAttribute("tipAmount")]
         public Nullable<decimal> tipAmount { get; set; }
-        
+
         /// <summary>
         /// <para>Μοναδική Ταυτότητα Πληρωμής</para>
+        /// <para>Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7</para>
         /// </summary>
         [DescriptionAttribute("Μοναδική Ταυτότητα Πληρωμής")]
         [XmlElementAttribute("transactionId")]
         public string transactionId { get; set; }
-        
+
         /// <summary>
         /// <para>Υπογραφή Πληρωμής Παρόχου</para>
+        /// <para>Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7 και όταν η διαβίβαση γίνεται από το κανάλι του παρόχου</para>
         /// </summary>
         [DescriptionAttribute("Υπογραφή Πληρωμής Παρόχου")]
         [XmlElementAttribute("ProvidersSignature")]
