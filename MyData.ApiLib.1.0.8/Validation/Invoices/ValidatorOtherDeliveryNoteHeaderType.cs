@@ -1,19 +1,19 @@
 ﻿namespace MyData.ApiLib
 {
+
+    [Validator(typeof(OtherDeliveryNoteHeaderType))]
     public class ValidatorOtherDeliveryNoteHeaderType : Validator
     {
-        public ValidatorOtherDeliveryNoteHeaderType()
-            : base(typeof(OtherDeliveryNoteHeaderType))
+        public ValidatorOtherDeliveryNoteHeaderType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as OtherDeliveryNoteHeaderType, ParentModel, ErrorList);
         }
 
-        void Validate(OtherDeliveryNoteHeaderType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public OtherDeliveryNoteHeaderType Model { get { return fModel as OtherDeliveryNoteHeaderType; } }
     }
 }

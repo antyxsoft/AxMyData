@@ -1,19 +1,18 @@
 ﻿namespace MyData.ApiLib
 {
+    [Validator(typeof(InvoicesExpensesClassificationDetailType))]
     public class ValidatorInvoicesExpensesClassificationDetailType : Validator
     {
-        public ValidatorInvoicesExpensesClassificationDetailType()
-            : base(typeof(InvoicesExpensesClassificationDetailType))
+        public ValidatorInvoicesExpensesClassificationDetailType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as InvoicesExpensesClassificationDetailType, ParentModel, ErrorList);
         }
 
-        void Validate(InvoicesExpensesClassificationDetailType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public InvoicesExpensesClassificationDetailType Model { get { return fModel as InvoicesExpensesClassificationDetailType; } }
     }
 }

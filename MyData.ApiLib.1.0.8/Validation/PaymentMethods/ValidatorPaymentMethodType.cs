@@ -1,19 +1,18 @@
 ﻿namespace MyData.ApiLib
 {
+    [Validator(typeof(PaymentMethodType))]
     public class ValidatorPaymentMethodType : Validator
     {
-        public ValidatorPaymentMethodType()
-            : base(typeof(PaymentMethodType))
+        public ValidatorPaymentMethodType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as PaymentMethodType, ParentModel, ErrorList);
         }
 
-        void Validate(PaymentMethodType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public PaymentMethodType Model { get { return fModel as PaymentMethodType; } }
     }
 }

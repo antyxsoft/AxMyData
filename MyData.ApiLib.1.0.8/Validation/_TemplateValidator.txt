@@ -1,23 +1,26 @@
 ﻿/*
 
-namespace MyData.ApiLib 
+namespace MyData.ApiLib
 {
-    public class ValidatorREPLACE : Validator
+    [Validator(typeof(MODEL_TYPE))]
+    public class ValidatorMODEL_TYPE : Validator
     {
-        public ValidatorREPLACE()
-            : base(typeof(REPLACE))
+        public ValidatorMODEL_TYPE(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as REPLACE, ParentModel, ErrorList);
         }
 
-        void Validate(REPLACE Model, object ParentModel, List<string> ErrorList)
-        { 
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList); 
+        public override void Validate()
+        {
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public MODEL_TYPE Model { get { return fModel as MODEL_TYPE; } }
     }
 }
+
+
+
+
 
 */

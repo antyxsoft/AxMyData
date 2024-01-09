@@ -10,7 +10,7 @@ namespace MyData.ApiLib
     public static partial class Validators
     {
         const string SLine = "--------------------------------------------------------";
-        static JsonSerializerOptions JsonOptions = new JsonSerializerOptions() { WriteIndented = true };
+        static public JsonSerializerOptions JsonOptions = new JsonSerializerOptions() { WriteIndented = true };
 
         static void AddToResult(StringBuilder sbResults, List<string> ErrorList)
         {

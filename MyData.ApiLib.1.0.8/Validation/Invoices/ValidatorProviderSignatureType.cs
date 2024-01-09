@@ -1,19 +1,19 @@
 ﻿namespace MyData.ApiLib
 {
+
+    [Validator(typeof(ProviderSignatureType))]
     public class ValidatorProviderSignatureType : Validator
     {
-        public ValidatorProviderSignatureType()
-            : base(typeof(ProviderSignatureType))
+        public ValidatorProviderSignatureType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as ProviderSignatureType, ParentModel, ErrorList);
         }
 
-        void Validate(ProviderSignatureType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public ProviderSignatureType Model { get { return fModel as ProviderSignatureType; } }
     }
 }

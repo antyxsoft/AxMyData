@@ -1,19 +1,19 @@
 ﻿namespace MyData.ApiLib 
 {
+
+    [Validator(typeof(AddressType))]
     public class ValidatorAddressType : Validator
     {
-        public ValidatorAddressType()
-            : base(typeof(AddressType))
+        public ValidatorAddressType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as AddressType, ParentModel, ErrorList);
         }
 
-        void Validate(AddressType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public AddressType Model { get { return fModel as AddressType; } }
     }
 }

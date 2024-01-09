@@ -1,27 +1,26 @@
 ﻿namespace MyData.ApiLib
 {
+
+    [Validator(typeof(PaymentMethodDetailType))]
     public class ValidatorPaymentMethodDetailType : Validator
     {
-        public ValidatorPaymentMethodDetailType()
-            : base(typeof(PaymentMethodDetailType))
+        public ValidatorPaymentMethodDetailType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as PaymentMethodDetailType, ParentModel, ErrorList);
         }
 
-        void Validate(PaymentMethodDetailType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
-            Validate_amount(Model, ParentModel, ErrorList);
-            Validate_tipAmount(Model, ParentModel, ErrorList);
-            Validate_transactionId(Model, ParentModel, ErrorList);
-            Validate_ProvidersSignature(Model, ParentModel, ErrorList);
-            Validate_ECRToken(Model, ParentModel, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
+
+            Validate_amount();
+            Validate_tipAmount();
+            Validate_transactionId();
+            Validate_ProvidersSignature();
+            Validate_ECRToken();
         }
 
-        void Validate_amount(PaymentMethodDetailType Model, object ParentModel, List<string> ErrorList)
+        void Validate_amount()
         {
             /*  amount
                 Ελάχιστη τιμή = 0 
@@ -30,30 +29,28 @@
              */
             if (Model.amount < 0)
             {
-                string ErrorMessage = Validators.FormatPropertyError(Model, nameof(Model.amount), "Η τιμή δεν μπορεί να είναι < 0");
-                ErrorList.Add(ErrorMessage);
+                AddPropertyError(nameof(Model.amount), "Η τιμή δεν μπορεί να είναι < 0");
             }
 
             Model.amount = decimal.Round(Model.amount, 2, MidpointRounding.ToEven);
         }
-        void Validate_tipAmount(PaymentMethodDetailType Model, object ParentModel, List<string> ErrorList)
+        void Validate_tipAmount()
         {
             /*  tipAmount
                 Ελάχιστη τιμή = 0 
                 Δεκαδικά ψηφία = 2             
              */
-            if (!Model.tipAmount.HasValue)
+            if (Model.tipAmount.HasValue)
             {
                 if (Model.tipAmount.Value < 0)
                 {
-                    string ErrorMessage = Validators.FormatPropertyError(Model, nameof(Model.tipAmount), "Η τιμή δεν μπορεί να είναι < 0");
-                    ErrorList.Add(ErrorMessage);
+                    AddPropertyError(nameof(Model.tipAmount), "Η τιμή δεν μπορεί να είναι < 0");
                 }
 
                 Model.tipAmount = decimal.Round(Model.tipAmount.Value, 2, MidpointRounding.ToEven);
             }
         }
-        void Validate_transactionId(PaymentMethodDetailType Model, object ParentModel, List<string> ErrorList)
+        void Validate_transactionId()
         {
             /*  transactionId
                 Το πεδίο transactionId διαβιβάζεται στην περίπτωση πληρωμών με type = 7
@@ -61,11 +58,10 @@
 
             if (Model.type == 7 && string.IsNullOrWhiteSpace(Model.transactionId))
             {
-                string ErrorMessage = Validators.FormatPropertyError(Model, nameof(Model.transactionId), "Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7");
-                ErrorList.Add(ErrorMessage);
+                AddPropertyError(nameof(Model.transactionId), "Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7");
             }
         }
-        void Validate_ProvidersSignature(PaymentMethodDetailType Model, object ParentModel, List<string> ErrorList)
+        void Validate_ProvidersSignature()
         {
             /*  ProvidersSignature
                 Το πεδίο ProvidersSignature είναι τύπου ProviderSignatureType, 
@@ -75,13 +71,12 @@
 
             if (Model.type == 7 && (Model.ProvidersSignature == null || Validators.IsInvoicingProvider))
             {
-                string ErrorMessage = Validators.FormatPropertyError(Model, nameof(Model.ProvidersSignature), "Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7 ή όταν η διαβίβαση γίνεται από Πάροχο");
-                ErrorList.Add(ErrorMessage);
+                AddPropertyError(nameof(Model.ProvidersSignature), "Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7 ή όταν η διαβίβαση γίνεται από Πάροχο");
             }
 
             // TODO: ProvidersSignature 
         }
-        void Validate_ECRToken(PaymentMethodDetailType Model, object ParentModel, List<string> ErrorList)
+        void Validate_ECRToken()
         {
             /*  ProvidersSignature
                 Το πεδίο ProvidersSignature είναι τύπου ProviderSignatureType, 
@@ -91,12 +86,11 @@
 
             if (Model.type == 7 && (Model.ECRToken == null || Validators.IsInvoicingProvider))
             {
-                string ErrorMessage = Validators.FormatPropertyError(Model, nameof(Model.ECRToken), "Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7 ή όταν η διαβίβαση γίνεται από Πάροχο");
-                ErrorList.Add(ErrorMessage);
+                AddPropertyError(nameof(Model.ECRToken), "Το πεδίο είναι υποχρεωτικό οταν ο Τύπος Πληρωμής = 7 ή όταν η διαβίβαση γίνεται από Πάροχο");
             }
         }
-    
 
+        public PaymentMethodDetailType Model { get { return fModel as PaymentMethodDetailType; } }
     }
 
 }

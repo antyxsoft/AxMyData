@@ -1,19 +1,18 @@
 ﻿namespace MyData.ApiLib
 {
+    [Validator(typeof(EntityType))]
     public class ValidatorEntityType : Validator
     {
-        public ValidatorEntityType()
-            : base(typeof(EntityType))
+        public ValidatorEntityType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as EntityType, ParentModel, ErrorList);
         }
 
-        void Validate(EntityType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public EntityType Model { get { return fModel as EntityType; } }
     }
 }

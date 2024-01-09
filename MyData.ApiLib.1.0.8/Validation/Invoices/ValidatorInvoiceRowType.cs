@@ -1,22 +1,20 @@
 ﻿namespace MyData.ApiLib
 {
- 
 
+    [Validator(typeof(InvoiceRowType))]
     public class ValidatorInvoiceRowType : Validator
     {
-        public ValidatorInvoiceRowType()
-            : base(typeof(InvoiceRowType))
+        public ValidatorInvoiceRowType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as InvoiceRowType, ParentModel, ErrorList);
         }
 
-        void Validate(InvoiceRowType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public InvoiceRowType Model { get { return fModel as InvoiceRowType; } }
     }
 
 }

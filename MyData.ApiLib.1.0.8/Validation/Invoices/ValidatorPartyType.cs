@@ -1,37 +1,35 @@
 ﻿namespace MyData.ApiLib
 {
+
+    [Validator(typeof(PartyType))]
     public class ValidatorPartyType : Validator
     {
-        public ValidatorPartyType()
-            : base(typeof(PartyType))
+        public ValidatorPartyType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as PartyType, ParentModel, ErrorList);
         }
 
-        void Validate(PartyType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
-            Validate_branch(Model, ParentModel, ErrorList);
-            Validate_documentIdNo(Model, ParentModel, ErrorList);
-            // Validate_supplyAccountNo(Model, ParentModel, ErrorList);     // in ValidatorAadeBookInvoiceType
-            // Validate_countryDocumentId(Model, ParentModel, ErrorList);   // in ValidatorAadeBookInvoiceType
+            Validators.ValidatePropertiesByAttributes(Model, Context);
+
+            Validate_branch();
+            Validate_documentIdNo();
+            // Validate_supplyAccountNo(Model);     // in ValidatorAadeBookInvoiceType
+            // Validate_countryDocumentId(Model);   // in ValidatorAadeBookInvoiceType
         }
 
-        void Validate_branch(PartyType Model, object ParentModel, List<string> ErrorList)
+        void Validate_branch()
         {
             // branch
             // Ελάχιστη τιμή = 0
             // Σε περίπτωση που η εγκατάσταση του εκδότη είναι η έδρα ή δεν υφίσταται, το πεδίο branch πρέπει να έχει την τιμή 0
             if (Model.branch < 0)
             {
-                string ErrorMessage = Validators.FormatPropertyError(Model, nameof(Model.branch), "Η τιμή δεν μπορεί να είναι < 0");
-                ErrorList.Add(ErrorMessage);
+                AddPropertyError(nameof(Model.branch), "Η τιμή δεν μπορεί να είναι < 0");
             }
         }
-        void Validate_documentIdNo(PartyType Model, object ParentModel, List<string> ErrorList)
+        void Validate_documentIdNo()
         {
             /*  documentIdNo
                 Έγκυρο μόνο στην περίπτωση παραστατικού tax free (specialInvoiceCategory = 4) 
@@ -43,8 +41,8 @@
 
             // TODO: documentIdNo
         }
- 
- 
+
+        public PartyType Model { get { return fModel as PartyType; } }
 
     }
 

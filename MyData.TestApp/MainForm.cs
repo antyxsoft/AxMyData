@@ -1,5 +1,8 @@
+using System;
 using System.Data;
+using System.Text;
 using System.Xml;
+using Tripous;
 
 namespace MyData.TestApp
 {
@@ -28,13 +31,11 @@ namespace MyData.TestApp
             btnExit.Click += AnyClick;
             btnApiKeyDialog.Click += AnyClick;
 
-
             btnTestValidation.Click += AnyClick;
 
-
- 
+            TestValidation();
         }
-
+ 
         void TestSerialization()
         {
             AadeBookInvoiceType Invoice = new AadeBookInvoiceType();
@@ -47,11 +48,9 @@ namespace MyData.TestApp
             Log(XmlText);
         }
 
-
         void TestValidation()
         {
-            
-
+ 
             string Results = Validators.Test();
             if (!string .IsNullOrWhiteSpace(Results))
             {

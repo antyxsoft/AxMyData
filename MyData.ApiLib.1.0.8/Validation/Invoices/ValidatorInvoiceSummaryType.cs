@@ -1,21 +1,19 @@
 ﻿namespace MyData.ApiLib
 {
-
+    [Validator(typeof(InvoiceSummaryType))]
     public class ValidatorInvoiceSummaryType : Validator
     {
-        public ValidatorInvoiceSummaryType()
-            : base(typeof(InvoiceSummaryType))
+        public ValidatorInvoiceSummaryType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as InvoiceSummaryType, ParentModel, ErrorList);
         }
 
-        void Validate(InvoiceSummaryType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public InvoiceSummaryType Model { get { return fModel as InvoiceSummaryType; } }
     }
 
 }

@@ -17,8 +17,7 @@ namespace MyData.ApiLib
     /// XML helper
     /// </summary>
     static public class ApiXml
-    {
- 
+    { 
 
         /// <summary>
         /// Serializes a specified instance and returns the XML string.
@@ -33,7 +32,6 @@ namespace MyData.ApiLib
                 return Writer.ToString();
             }
         }
-
 
         /// <summary>
         /// Removes an Attribure from an XmlElement by name, if exists.

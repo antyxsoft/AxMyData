@@ -1,21 +1,19 @@
 ﻿namespace MyData.ApiLib
 {
- 
 
+    [Validator(typeof(TaxTotalsType))]
     public class ValidatorTaxTotalsType : Validator
     {
-        public ValidatorTaxTotalsType()
-            : base(typeof(TaxTotalsType))
+        public ValidatorTaxTotalsType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as TaxTotalsType, ParentModel, ErrorList);
         }
 
-        void Validate(TaxTotalsType Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public TaxTotalsType Model { get { return fModel as TaxTotalsType; } }
     }
 }

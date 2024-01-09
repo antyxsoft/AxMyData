@@ -1,19 +1,18 @@
 ﻿namespace MyData.ApiLib
 {
+    [Validator(typeof(IncomeClassificationsDoc))]
     public class ValidatorIncomeClassificationsDoc : Validator
     {
-        public ValidatorIncomeClassificationsDoc()
-            : base(typeof(IncomeClassificationsDoc))
+        public ValidatorIncomeClassificationsDoc(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
-        }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
-        {
-            Validate(Model as IncomeClassificationsDoc, ParentModel, ErrorList);
         }
 
-        void Validate(IncomeClassificationsDoc Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
+            Validators.ValidatePropertiesByAttributes(Model, Context);
         }
+
+        public IncomeClassificationsDoc Model { get { return fModel as IncomeClassificationsDoc; } }
     }
 }

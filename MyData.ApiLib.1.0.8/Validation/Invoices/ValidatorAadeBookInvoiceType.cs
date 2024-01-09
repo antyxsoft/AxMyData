@@ -1,25 +1,21 @@
 ﻿namespace MyData.ApiLib
 {
+    [Validator(typeof(AadeBookInvoiceType))]
     public class ValidatorAadeBookInvoiceType : Validator
     {
-        public ValidatorAadeBookInvoiceType()
-            : base(typeof(AadeBookInvoiceType))
+        public ValidatorAadeBookInvoiceType(object Model, ValidatorContext Context)
+            : base(Model, Context)
         {
         }
-        public override void Validate(object Model, object ParentModel, List<string> ErrorList)
+        public override void Validate()
         {
-            Validate(Model as AadeBookInvoiceType, ParentModel, ErrorList);
-        }
+            Validators.ValidatePropertiesByAttributes(Model, Context);
+            Validate_taxesTotals();
+            Validate_issuer();
+            Validate_counterpart();
+        } 
 
-        void Validate(AadeBookInvoiceType Model, object ParentModel, List<string> ErrorList)
-        {
-            Validators.ValidatePropertiesByAttributes(Model, ErrorList);
-            Validate_taxesTotals(Model, ParentModel, ErrorList);
-            Validate_issuer(Model, ParentModel, ErrorList);
-            Validate_counterpart(Model, ParentModel, ErrorList);
-        }
-
-        void Validate_taxesTotals(AadeBookInvoiceType Model, object ParentModel, List<string> ErrorList)
+        void Validate_taxesTotals()
         {
             /*  taxesTotals
                 Στο στοιχείο taxesTotals θα περιλαμβάνονται φόροι όλων των κατηγοριών, εκτός του ΦΠΑ, 
@@ -32,8 +28,7 @@
                 // TODO: taxesTotals
             }
         }
-
-        void Validate_issuer(AadeBookInvoiceType Model, object ParentModel, List<string> ErrorList)
+        void Validate_issuer()
         {
             /*  issuer
                 Για τον εκδότη, τα στοιχεία Επωνυμία και Διεύθυνση δεν γίνονται αποδεκτά στην περίπτωση που αφορούν οντότητα εντός Ελλάδας (GR).
@@ -41,7 +36,7 @@
 
             // TODO: issuer
         }
-        void Validate_counterpart(AadeBookInvoiceType Model, object ParentModel, List<string> ErrorList)
+        void Validate_counterpart()
         {
             /*  counterpart
                 1. Για τον λήπτη, το στοιχείο Επωνυμία δεν γίνονται αποδεκτό στην περίπτωση που αφορά οντότητα εντός Ελλάδας (GR)
@@ -62,5 +57,7 @@
 
             // TODO: counterpart
         }
+
+        public AadeBookInvoiceType Model { get { return fModel as AadeBookInvoiceType; } }
     }
 }
