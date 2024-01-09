@@ -2,19 +2,33 @@
 
 namespace MyData.ApiLib
 {
+
+    /// <summary>
+    /// A validator class. 
+    /// </summary>
     [Validator(typeof(MODEL_TYPE))]
     public class ValidatorMODEL_TYPE : Validator
     {
+
+        /// <summary>
+        /// Constructor 
+        /// </summary>
         public ValidatorMODEL_TYPE(object Model, ValidatorContext Context)
             : base(Model, Context)
         {
         }
 
+        /// <summary>
+        /// Validates the model.
+        /// <para>Adds error messages to the context error list if the model does not pass the validation checks.</para>
+        /// </summary>
         public override void Validate()
         {
             Validators.ValidatePropertiesByAttributes(Model, Context);
         }
-
+        /// <summary>
+        /// Returns the model this being validated. 
+        /// </summary>
         public MODEL_TYPE Model { get { return fModel as MODEL_TYPE; } }
     }
 }

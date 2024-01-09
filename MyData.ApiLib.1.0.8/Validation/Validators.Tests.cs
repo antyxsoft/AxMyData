@@ -58,7 +58,7 @@ namespace MyData.ApiLib
             sbResults.AppendLine($"TEST NAME: Empty Invoice");
             sbResults.AppendLine(SLine);
             Invoices = Models.CreateInvoicesDoc();
-            AadeBookInvoiceType Invoice = Models.CreateAadeBookInvoiceType();
+            AadeBookInvoiceType Invoice = Models.CreateAadeBookInvoiceType(true);
             Invoices.invoice.Add(Invoice);
             Invoice.transmissionFailure = 8;
             ErrorList = Validate(Invoices);

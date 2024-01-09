@@ -1,14 +1,23 @@
 ﻿namespace MyData.ApiLib
 {
-
+    /// <summary>
+    /// A validator class
+    /// </summary>
     [Validator(typeof(InvoiceHeaderType))]
     public class ValidatorInvoiceHeaderType : Validator
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ValidatorInvoiceHeaderType(object Model, ValidatorContext Context)
             : base(Model, Context)
         {
         }
 
+        /// <summary>
+        /// Validates the model.
+        /// <para>Adds error messages to the context error list if the model does not pass the validation checks.</para>
+        /// </summary>
         public override void Validate()
         {
             Validators.ValidatePropertiesByAttributes(Model, Context);
@@ -24,6 +33,9 @@
             Validate_thirdPartyCollection();
         }
  
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_series()
         {
             /*  series
@@ -32,6 +44,9 @@
 
             // TODO: series
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_selfPricing()
         {
             /*  selfPricing
@@ -40,6 +55,9 @@
 
             // TODO: selfPricing
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_invoiceType()
         {
             /*  invoiceType
@@ -48,6 +66,9 @@
 
             // TODO: invoiceType
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_exchangeRate()
         {
             /*  exchangeRate
@@ -73,15 +94,30 @@
             }
  
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_isDeliveryNote()
         {
             /*  isDeliveryNote
-                Το πεδίο isDeliveryNote ορίζει αν πρόκειται για τιμολόγιο που είναι και δελτίο αποστολής (π.χ το παραστατικό τύπου 1.1 - Τιμολόγιο Πώλησης, 
-                εφόσον φέρει την ένδειξη isDeliveryNote = true, τότε είναι και δελτίο διακίνησης και θα πρέπει να αποσταλούν και επιπλέον στοιχεία διακίνησης)
+                Το πεδίο isDeliveryNote ορίζει αν πρόκειται για τιμολόγιο που είναι και δελτίο αποστολής 
+                (π.χ το παραστατικό τύπου 1.1 - Τιμολόγιο Πώλησης, εφόσον φέρει την ένδειξη isDeliveryNote = true, 
+                τότε είναι και δελτίο διακίνησης 
+                και θα πρέπει να αποσταλούν και επιπλέον στοιχεία διακίνησης)
             */
 
-            // TODO: isDeliveryNote
+            if (InvoiceCategory.IsDeliveryDocument(Model.invoiceType))
+                Model.isDeliveryNote = true;
+
+            if (Model.isDeliveryNote.HasValue && Model.isDeliveryNote.Value == true)
+            {
+                if (Model.otherDeliveryNoteHeader == null)
+                    AddPropertyError(nameof(Model.otherDeliveryNoteHeader), "Απαιτείται τιμή για το πεδίο. Υποχρεωτικό σε Παραστατικά που είναι και Δελτία Αποστολής");
+            }
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_fuelInvoice()
         {
             /*  fuelInvoice
@@ -92,6 +128,9 @@
 
             // TODO: fuelInvoice
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_invoiceVariationType()
         {
             /*  invoiceVariationType
@@ -100,6 +139,9 @@
 
             // TODO: invoiceVariationType
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_otherMovePurposeTitle()
         {
             /*  otherMovePurposeTitle
@@ -110,6 +152,9 @@
 
             // TODO: otherMovePurposeTitle
         }
+        /// <summary>
+        /// Property validation
+        /// </summary>
         void Validate_thirdPartyCollection()
         {
             /*  thirdPartyCollection
@@ -122,6 +167,9 @@
             // TODO: thirdPartyCollection
         }
 
+        /// <summary>
+        /// Returns the model.
+        /// </summary>
         public InvoiceHeaderType Model { get { return fModel as InvoiceHeaderType; } }
     }
 }

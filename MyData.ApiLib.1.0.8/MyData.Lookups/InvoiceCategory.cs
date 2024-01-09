@@ -125,6 +125,16 @@
         {
             return List.FirstOrDefault(item => item.Value == Value) != null;
         }
- 
+
+
+        /// <summary>
+        /// True when it is a delivery note too (Δελτίο Αποστολής ή Τιμολόγιο + Δελτίο Αποστολής) 
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        static public bool IsDeliveryDocument(InvoiceType Value)
+        {
+            return Value == InvoiceType.Item9Period3;
+        }
     }
 }

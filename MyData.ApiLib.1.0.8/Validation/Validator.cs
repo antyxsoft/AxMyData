@@ -57,7 +57,8 @@ namespace MyData.ApiLib
 
         /* public */
         /// <summary>
-        /// Validates a model
+        /// Validates the model.
+        /// <para>Adds error messages to the context error list if the model does not pass the validation checks.</para>
         /// </summary>
         public abstract void Validate();
 
