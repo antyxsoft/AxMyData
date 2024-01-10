@@ -13,7 +13,9 @@
             Validate_taxesTotals();
             Validate_issuer();
             Validate_counterpart();
-        } 
+
+            // TODO: Οι χαρακτηρισμοί που αφορούν τον υποβάλλοντα (εκδότης – εσόδων, λήπτης εξόδων), υποβάλλονται μαζί με το παραστατικό με την αντίστοιχη χρήση των πεδίων incomeClassification – expensesClassification
+        }
 
         void Validate_taxesTotals()
         {

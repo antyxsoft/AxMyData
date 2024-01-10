@@ -50,5 +50,14 @@
                 return fList;
             }
         }
+
+        static public bool IsZeroFPA(int Value)
+        {
+            return Value == 7;
+        }
+        static public bool IsNoFPA(int Value)
+        {
+            return Value == 8;
+        }
     }
 }
