@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyData.ApiLib
 {
+    /// <summary>
+    /// Helper class for working with MyData models
+    /// </summary>
     static public class Models
     {
 
@@ -84,7 +87,6 @@ namespace MyData.ApiLib
 
             return Result;
         }
-
 
         static IncomeClassificationType AddLine(this List<IncomeClassificationType> List, IncomeCategory Category, decimal Amount, IncomeValue IncomeValue = null)
         {

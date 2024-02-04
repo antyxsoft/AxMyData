@@ -1,6 +1,4 @@
-﻿ 
-
-namespace MyData.ApiLib
+﻿namespace MyData.ApiLib
 {
     [Validator(typeof(ExpensesClassificationsDoc))]
     public class ValidatorExpensesClassificationsDoc : Validator
@@ -9,6 +7,7 @@ namespace MyData.ApiLib
             : base(Model, Context)
         {
         }
+
         public override void Validate()
         {
             Validators.ValidatePropertiesByAttributes(Model, Context);

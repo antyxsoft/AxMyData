@@ -1,6 +1,7 @@
 ﻿
 MyData Portal:                  https://www.aade.gr/mydata
-Documentation:                  https://www.aade.gr/myDATA/tehniki-tekmiriosi
+Documentation:                  https://www.aade.gr/epiheiriseis/mydata-ilektronika-biblia-aade/mydata/tehnikes-prodiagrafes-ekdoseis-mydata
+Test Environment:               https://www.aade.gr/epiheiriseis/mydata-ilektronika-biblia-aade/mydata/dokimastiko-periballon
 
 Api EndPoint:                   https://mydata-dev.azure-api.net
 Dev Portal:                     https://mydata-dev.portal.azure-api.net/

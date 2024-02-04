@@ -2,7 +2,7 @@
 {
 
     /// <summary>
-    /// Represents this library
+    /// Helper class. Represents this library
     /// </summary>
     public static class Lib
     {
