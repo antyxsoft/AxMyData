@@ -1,5 +1,7 @@
 ﻿# AxMyData
 
+> **NOTE**: this is a work in progress.
+
 A C# library for [AADE's](https://www.aade.gr) (Greek Tax Authority) [MyData Web API](https://www.aade.gr/mydata).
 
 The libray is based on the [v1.0.8](https://www.aade.gr/sites/default/files/2023-12/myDATA%20API%20Documentation%20v1.0.8_preofficial_erp_1.pdf) version of MyData Web API and covers all the calls of the service.
